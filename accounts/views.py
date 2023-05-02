@@ -10,13 +10,15 @@ def Register(request):
         userInfo.user_id = request.POST['user_id']
         userInfo.email = request.POST['email']
         pw = request.POST['user_pw']
-        if CheckValid(pw):
+        result = CheckValid(pw)
+        if result == 2:
             tmp = Encryption(pw)
             userInfo.user_pw = tmp + (15 - len(tmp))*'0'
             userInfo.save()
+        elif result == 1:
+            pass
         else:
-            #Label바꿔서 에러표시해줘야함 
-            return render(request, 'accounts/Register.html')
+            pass
     return render(request, 'accounts/Register.html')
 
 def Login(request):
