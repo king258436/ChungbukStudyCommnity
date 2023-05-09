@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="Signup.css" rel="stylesheet" type="text/css">
+        <title>회원가입</title>
+    </head>
+    <body>
+            <div class="left_side" style="float:left">
+                <div class="Chungbuk_jeans">
+                    <img  src="https://ifh.cc/g/lAk26v.png" width="400">
+                </div>
+                <div class="left_down">
+                    <div class="CSC_big">
+                        <p style="font-size:48px";>CSC</p>
+                    </div>
+                    <div class="CSC_small">
+                        <span style="font-size:30px";>C</span>hungbuk National University<br>
+                        <span style="font-size:30px";>S</span>tudy<br>
+                        <span style="font-size:30px";>C</span>ommunity
+                    </div>
+                </div>
+            </div>
+
+            <div class="right_side">
+                    <form action="{% url 'Register' %}", method = "REGISTER">
+                        {% csrf_token %}
+                        <div class="Signup">
+                            <h1>회원가입</h1>
+                        </div>
+                        <div class="line"><hr></div>
+                        <div class="right_middle">
+                            <div class="info">
+                                <p><input type="text" name="name" placeholder="Name" onfocus="placeholder=''" onblur="placeholder='Name'" required></p>
+                            </div>
+                            <div class="info" >
+                                <p><input type="text" name="user_id" placeholder="ID" onfocus="placeholder=''" onblur="placeholder='ID'" required></p>
+                                <form action="{% url 'CheckId' %}", method = "CheckId">
+                                    <button type="submit" name="Duplicate">중복확인</button>
+                                </form>
+                            </div>               
+                            <div class="info">
+                                <p><input type="password" name="user_pw" placeholder="Password" onfocus="placeholder=''" onblur="placeholder='Password'" required></p>
+                                <p><input type="text" name="age" placeholder="Age" onfocus="placeholder=''" onblur="placeholder='Age'" required></p>
+                                <p><input type="text" name="email" placeholder="Email Address" onfocus="placeholder=''" onblur="placeholder='Email Address'" required></p>
+                            </div>
+                        </div>
+                        <div class="right_down">
+                            <div class="Signup_button">
+                                <p><input type="submit" value="회원 가입"></p>
+                            </div>
+                            <div class="already_account">
+                                <p style="color : gray">이미 계정이 있습니까?   <a href="accounts/login.html">로그인</a>하기</p>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+    </body>
+</html>
