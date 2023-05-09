@@ -5,8 +5,9 @@ class User(models.Model): #유저
     age = models.IntegerField()
     user_id = models.CharField(max_length = 30)
     user_pw = models.CharField(max_length = 20)
-    email = models.CharField(max_length = 50)
+    email = models.EmailField()
 
-    def __str__(self):
-        return self.user_id
-
+class Lecture(models.Model):
+    professor = models.CharField(max_length = 10)
+    lectName = models.CharField(max_length = 20)
+    students = models.ManyToManyField(User)
