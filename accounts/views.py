@@ -34,17 +34,17 @@ def Register(request):
         userInfo.user_pw = request.REGISTER['user_pw']
         result = CheckValid(userInfo)
         if idCheckTemp != userInfo.user_id:
-            return render(request, 'accounts/Signup.html')
+            return render(request, 'accounts/SignUp.html')
         elif result == 2:
             tmp = Encryption(userInfo.user_pw)
             userInfo.user_pw = tmp + (15 - len(tmp))*'0'
             userInfo.save()
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
         elif result == 1:
-            return render(request, 'accounts/Signup.html')
+            return render(request, 'accounts/SignUp.html')
         else:
-            return render(request, 'accounts/Signup.html')
-    return render(request, 'accounts/Signup.html') 
+            return render(request, 'accounts/SignUp.html')
+    return render(request, 'accounts/SignUp.html') 
 
 #로그인 부분에서 사용할 함수들 
 
@@ -54,13 +54,16 @@ def Login(request):
         tmp_pw = request.LOGIN['pw']
         checkObj = User.objects.filter(user_id = tmp_id)
         if not len(checkObj):
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
         elif checkObj[0].user_pw != Encryption(tmp_pw):
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
         else:
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
     
     return render(request, 'accounts/login.html')# 안전하게 통과했으므로 home화면으로 넘어감 
 
-def Home(request):
-    return render(request, 'accounts/home.html')
+def Forget(request):
+    return render(request, 'accounts/ps_change.html')
+
+def MyPage(request):
+    return render(request, '../main/index.html')
