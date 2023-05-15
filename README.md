@@ -20,6 +20,8 @@ ___
 ## 팀원 : 김연신
 - 학번 - 2020039010
 - 맡은 역할 frontend.
+- Email : yeonshin82@gmail.com
+- [Github](https://github.com/YeonShin)
 ___
 ## 팀원 : 최시온
 - 학번 - 2020039026
