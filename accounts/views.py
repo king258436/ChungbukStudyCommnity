@@ -7,20 +7,17 @@ idCheckTemp = ''#아이디체크용 전역변수
 #마이 페이지에서 사용할 함수 
 
 def AddLect(request):
-    if request.method == 'AddLect':
-        pass # 이 부분을 어떻게 써먹을지 몰라서 아래 새로 만들었어
-    def AddLect(request):
-        if request.method == 'POST':
-            professor = request.POST['professor']
-            lect_name = request.POST['lect_name']
-            user_id = request.user.user_id
-            user = User.objects.get(user_id=user_id)
-            lecture = Lecture(professor=professor, lectName=lect_name)
-            lecture.save()
-            user.lecture_set.add(lecture)
-            return redirect('MyPage')
-        else:
-            return render(request, 'AddLect.html')
+    if request.method == 'POST':
+        professor = request.POST['professor']
+        lect_name = request.POST['lect_name']
+        user_id = request.user.user_id
+        user = User.objects.get(user_id=user_id)
+        lecture = Lecture(professor=professor, lectName=lect_name)
+        lecture.save()
+        user.lecture_set.add(lecture)
+        return redirect('MyPage')
+    else:
+        return render(request, 'AddLect.html')
         # 강의 추가 기능(?) AddLect.html 템플릿에 추가 필요
 
 #회원가입 부분에서 사용할 함수들 
@@ -47,17 +44,17 @@ def Register(request):
         userInfo.user_pw = request.REGISTER['user_pw']
         result = CheckValid(userInfo)
         if idCheckTemp != userInfo.user_id:
-            return render(request, 'accounts/Signup.html')
+            return render(request, 'accounts/SignUp.html')
         elif result == 2:
             tmp = Encryption(userInfo.user_pw)
             userInfo.user_pw = tmp + (15 - len(tmp))*'0'
             userInfo.save()
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
         elif result == 1:
-            return render(request, 'accounts/Signup.html')
+            return render(request, 'accounts/SignUp.html')
         else:
-            return render(request, 'accounts/Signup.html')
-    return render(request, 'accounts/Signup.html') 
+            return render(request, 'accounts/SignUp.html')
+    return render(request, 'accounts/SignUp.html') 
 
 #로그인 부분에서 사용할 함수들 
 
@@ -67,13 +64,14 @@ def Login(request):
         tmp_pw = request.LOGIN['pw']
         checkObj = User.objects.filter(user_id = tmp_id)
         if not len(checkObj):
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
         elif checkObj[0].user_pw != Encryption(tmp_pw):
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
         else:
-            return render(request, 'accounts/home.html')
+            return render(request, '../main/index.html')
     
     return render(request, 'accounts/login.html')# 안전하게 통과했으므로 home화면으로 넘어감 
+
 
 def Home(request):
     return render(request, 'accounts/home.html')
@@ -95,3 +93,8 @@ def MyPage(request):
         context = {'user': user, 'lectures' : lectures}
         return render(request, 'MyPage.html', context)
     # 사용자 정보를 MyPage.html 템플릿에 전달
+    
+def Forget(request):
+    return render(request, 'accounts/ps_change.html')
+
+

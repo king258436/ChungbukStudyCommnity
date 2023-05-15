@@ -1,12 +1,10 @@
 from django.contrib import admin
-from django.urls import path
-from accounts import views as AcView
+from django.urls import path, include
 import os
 
 
 urlpatterns = [
     path('admin/', admin.site.urls,name = 'toAdmin'),
-    path('accounts/Register/', AcView.Register, name = 'Register'),
-    path('accounts/Login/', AcView.Login, name = 'Login'),
-    path('', AcView.Home,name = 'home')
+    path('accounts/', include('accounts.urls')),
+    path('', include('main.urls')),
 ]

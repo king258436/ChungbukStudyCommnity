@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+        <title>정보 변경</title>
+
+        <style>
+            .selector-for-some-widget {
+                box-sizing: content-box;
+            } 
+            body{
+                background: rgb(185, 178, 178);
+            }
+            .row{
+                background: white;
+            }
+            .list
+            .btn1{
+                    border : none;
+                    outline: none;
+                    height: 50px;
+                    width : 100%;
+                    background-color: #7489F0;
+                    color: black;
+                    border-radius: 4px;
+                    font-weight: bold;
+                    
+                }
+            #current{
+                background-color: #A4B0ED;
+                border-color: #A4B0ED;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- 네비게이션 바 부분 -->
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #A4B0ED";>
+            <div class="container">
+              <a class="navbar-brand" href="home.html"> 
+                <img src="https://ifh.cc/g/3Na8tF.png" alt="" width="30" class="d-inline-block align-text-top"> CSC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdownMenuLink" aria-controls="navbarDropdownMenuLink" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarDropdownMenuLink">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="home.html">홈</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">평가</a>
+                        </li>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            자료실
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            게시판
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex flex-row justify-content-end">
+                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='MyPage_info.html'">마이페이지</button>
+                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='sign_out'">로그아웃</button>
+                    </form>
+                </div>
+
+            </div>
+        </nav>
+          
+
+        <!-- 마이페이지 본문 -->
+        <div class="container">
+            <div class="row">
+                <!-- 좌측 사이드 페이지 탭 -->
+                <div class="col-lg-4 pt-5">
+                    <div class="list-group">
+                        <a href="MyPage_info.html" id="current" class="list-group-item list-group-item-action active" aria-current="true">내 정보</a>
+                        <a href="MyPage_info_change.html" class="list-group-item list-group-item-action">정보 변경</a>
+                        <a href="#" class="list-group-item list-group-item-action">Tap 3</a>
+                        <a href="#" class="list-group-item list-group-item-action">Tap 4</a>
+                      </div>
+                </div>
+                <!-- 정보 변경 부분 -->
+                <div class="col-lg-7">
+                        <br><h4>내 정보</h4>
+                        <hr>
+                        <div class="form-floating mb-3">
+                            <input type="text" readonly name="name" id="name" class="form-control" value="김연신">
+                            <label for="name" class="form-label">이름</label> 
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" name="ID" id="ID" class="form-control" value="yeonshin01">
+                            <label for="ID" class="form-label">아이디</label> 
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" readonly id="age" name="age" class="form-control" value="23">
+                            <label for="age" class="form-label">나이</label> 
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" id="email" name="email" class="form-control" value="mil1445@chungbuk.ac.kr">
+                            <label for="email" class="form-label">이메일</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            수강중인 과목
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#courses_example">
+                                        <div class="col-md">
+                                            <div class="list-group">
+                                                <a href="과목1 게시판" class="list-group-item list-group-item-action">과목 1</a>
+                                                <a href="과목2 게시판" class="list-group-item list-group-item-action">과목 2</a>
+                                                <a href="과목3 게시판" class="list-group-item list-group-item-action">과목 3</a>
+                                                <a href="과목4 게시판" class="list-group-item list-group-item-action">과목 4</a>
+                                                <a href="과목5 게시판" class="list-group-item list-group-item-action">과목 5</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>   
+    </body>
+</html>
