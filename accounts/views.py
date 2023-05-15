@@ -53,15 +53,18 @@ def Register(request):
 
 def Login(request):
     if request.method == 'POST':
-        tmp_id = request.POST['myid']
-        tmp_pw = request.POST['mypw']
-        checkObj = User.objects.filter(user_id = tmp_id)
-        if not len(checkObj):
-            return render(request, 'accounts/login.html')
-        elif checkObj[0].user_pw != Encryption(tmp_pw):
-            return render(request, 'accounts/login.html')
-        else:
+        tmp_id = request.POST.get('myid')
+        tmp_pw = request.POST.get('mypw')
+        try:
+            checkObj = User.objects.get(user_id = tmp_id)
             return render(request, '../main/index.html')
+            if checkObj.user_pw != Encryption(tmp_pw):
+                return render(request, 'accounts/login.html')
+            else:
+                return render(request, '../main/index.html')
+        except:
+            return render(request, 'accounts/login.html')
+        
     else:
         return render(request, 'accounts/login.html')# 안전하게 통과했으므로 home화면으로 넘어감 
 
