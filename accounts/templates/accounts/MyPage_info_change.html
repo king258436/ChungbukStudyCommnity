@@ -41,7 +41,7 @@
         <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #A4B0ED";>
             <div class="container">
                 <!-- navbar-brand 부분은 로고와 CSC 텍스트 부분으로 클릭하면 홈 화면으로 이동함 -->
-                <a class="navbar-brand" href="home.html"> 
+                <a class="navbar-brand" href="../"> 
                     <img src="https://ifh.cc/g/3Na8tF.png" alt="" width="30" class="d-inline-block align-text-top"> CSC</a>
                 <!-- 반응형 웹, 페이지 확대된 상태면 홈, 평가, 자료실, 게시판 탭이 안보여지고 버튼이 생김 버튼 누르면 쫘라락 나옴 -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDropdownMenuLink" aria-controls="navbarDropdownMenuLink" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@
                     <ul class="navbar-nav">
                         <!-- 홈 탭 부분 -->
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="home.html">홈</a>
+                            <a class="nav-link" aria-current="page" href="../">홈</a>
                         </li>
                         <!-- 평가 탭 부분 -->
                         <li class="nav-item">
@@ -84,7 +84,7 @@
                     </ul>
                     <!-- 마이페이지랑 로그아웃 버튼 -->
                     <form class="d-flex justify-content-end">
-                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='MyPage_info.html'">마이페이지</button>
+                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='../MyPageInfo'">마이페이지</button>
                         <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='sign_out'">로그아웃</button>
                     </form>
                 </div>
@@ -100,8 +100,8 @@
                 <div class="col-lg-4 pt-5">
                     <!-- active 입력된 리스트는 현재 선택한 리스트를 의미함 리스트를 클릭하면 해당 페이지로 이동 -->
                     <div class="list-group">
-                        <a href="MyPage_info.html" class="list-group-item list-group-item-action">내 정보</a>
-                        <a href="MyPage_info_change.html" id="current" class="list-group-item list-group-item-action active" aria-current="true">정보 변경</a>
+                        <a href="../MyPageInfo" class="list-group-item list-group-item-action">내 정보</a>
+                        <a href="../MyPageInfoChange" id="current" class="list-group-item list-group-item-action active" aria-current="true">정보 변경</a>
                         <a href="#" class="list-group-item list-group-item-action">Tap 3</a>
                         <a href="#" class="list-group-item list-group-item-action">Tap 4</a>
                       </div>

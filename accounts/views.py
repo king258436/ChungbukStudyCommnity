@@ -35,42 +35,35 @@ def CheckId(request):
 
 def Register(request):
     global idCheckTemp
-    if request.method == 'REGISTER':
+    if request.method == 'POST':
         userInfo = User()
-        userInfo.age = request.REGISTER['age']
-        userInfo.name = request.REGISTER['name']
-        userInfo.user_id = request.REGISTER['user_id']
-        userInfo.email = request.REGISTER['email']
-        userInfo.user_pw = request.REGISTER['user_pw']
-        result = CheckValid(userInfo)
-        if idCheckTemp != userInfo.user_id:
-            return render(request, 'accounts/SignUp.html')
-        elif result == 2:
-            tmp = Encryption(userInfo.user_pw)
-            userInfo.user_pw = tmp + (15 - len(tmp))*'0'
-            userInfo.save()
-            return render(request, '../main/index.html')
-        elif result == 1:
-            return render(request, 'accounts/SignUp.html')
-        else:
-            return render(request, 'accounts/SignUp.html')
-    return render(request, 'accounts/SignUp.html') 
+        userInfo.age = request.POST['age']
+        userInfo.name = request.POST['name']
+        userInfo.user_id = request.POST['user_id']
+        userInfo.email = request.POST['email']
+        userInfo.user_pw = request.POST['user_pw']
+        tmp = Encryption(userInfo.user_pw)
+        userInfo.user_pw = tmp + (15 - len(tmp))*'0'
+        userInfo.save()
+        return render(request, 'accounts/login.html')
+    else:
+        return render(request, 'accounts/SignUp.html') 
 
 #로그인 부분에서 사용할 함수들 
 
 def Login(request):
-    if request.method == 'LOGIN':
-        tmp_id = request.LOGIN['id']
-        tmp_pw = request.LOGIN['pw']
+    if request.method == 'POST':
+        tmp_id = request.POST['myid']
+        tmp_pw = request.POST['mypw']
         checkObj = User.objects.filter(user_id = tmp_id)
         if not len(checkObj):
-            return render(request, '../main/index.html')
+            return render(request, 'accounts/login.html')
         elif checkObj[0].user_pw != Encryption(tmp_pw):
-            return render(request, '../main/index.html')
+            return render(request, 'accounts/login.html')
         else:
             return render(request, '../main/index.html')
-    
-    return render(request, 'accounts/login.html')# 안전하게 통과했으므로 home화면으로 넘어감 
+    else:
+        return render(request, 'accounts/login.html')# 안전하게 통과했으므로 home화면으로 넘어감 
 
 
 def Home(request):

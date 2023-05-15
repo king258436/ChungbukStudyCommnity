@@ -64,7 +64,7 @@
                     <!-- 우측 회원가입 부분 -->
                     <div class="col-lg-7 px-5" id="right">
                         <div class="right"> 
-                            <form action="{% url 'Register' %}", method = "REGISTER">
+                            <form action="{% url 'Register' %}", method = "POST">
                                 {% csrf_token %}
                                     <div class="Register">
                                         <h2>회원가입</h2>
@@ -100,12 +100,12 @@
                                     </div>
                                     <div class="submit">
                                         <div class="col-lg-9">
-                                            <p><input type="submit" class="btn1" onclick="location.href='home.html'" value="회원 가입"></p>
+                                            <p><input type="submit" class="btn1", value="회원 가입"></p>
                                         </div>
                                     </div>
                                     <div class="already_account">
                                         <div class="col-lg-9">
-                                            <p style="color : gray">이미 계정이 있습니까?   <a href="login.html">로그인</a>하기</p>
+                                            <p style="color : gray">이미 계정이 있습니까?   <a href="../Login">로그인</a>하기</p>
                                         </div>
                                     </div>
                                 </div>
