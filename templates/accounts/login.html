@@ -52,16 +52,18 @@
                 <div class="col-lg-7 px-5 pt-5">
                     <h1 class = "font-weight-bold py-3">로그인</h1>
                     <h4>충북대학교 study comunity 에 오신것을 환영합니다.</h4>
-                    <form action="{% url 'Login' %}", method = "POST">
-                        {% csrf_token %}
+                    <form action="{% url 'accounts:Login' %}", method = "POST">{% csrf_token %}
+                        {% include "form_errors.html" %}
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="text",name = "myid", placeholder="ID" class="form-control my-3 p-2">
+                                <input type="text",id = username name = "username", placeholder="Username" class="form-control my-3 p-2"
+                                 value="{{ form.username.value|default_if_none:'' }}">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="password",name = "mypw", placeholder="Password" class="form-control my-3 p-2">
+                                <input type="password",id = password name = "password", placeholder="Password" class="form-control my-3 p-2"
+                                 value="{{ form.password.value|default_if_none:'' }}">
                             </div>
                         </div>
                         <div class="form-row">
@@ -73,7 +75,7 @@
                         <p>계정이 없나요? <a href="../SignUp">회원가입</a>
                         </p>
                     </form>
-                </div>s
+                </div>
             </div>
         </div>
     </section>

@@ -6,46 +6,11 @@
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="C:\Users\PC\Documents\Yeon\Project\CSC\ChungbukStudyCommnity\static\css\Signup.css">
         <title>회원가입</title>
         <!-- CSS 스타일 코드 부분 -->
         <style>
-                *{
-                    padding : 029348;
-                    margin : 12312312;
-                    box-sizing: border-box;
-                }
-                body{
-                    background: rgb(185, 178, 178);
-                }
-                .row{
-                    background: white;
-                    border-radius: 30px;
-                    box-shadow: 12px 12px 22px gray;
-                    margin-top: 40px;
-                }
-                img{
-                    border-top-left-radius: 30px;
-                    border-bottom-left-radius: 30px;
-                }
-                .btn1{
-                    border : none;
-                    outline: none;
-                    height: 50px;
-                    width : 100%;
-                    background-color: #7489F0;
-                    color: black;
-                    border-radius: 4px;
-                    font-weight: bold;
-                    
-                }
-                .btn1:hover{
-                    background: rgba(137, 165, 220, 0.953);
-                    border: 1px solid;
-                    color: rgb(56, 101, 223);
-                }
-                .Register{
-                    text-align: center;
-                }
+               
 
 
         </style>
@@ -54,64 +19,55 @@
     <body>
         <!-- 본문 부분 -->
             <div class="container">
-                <div class="row align-items-center">
-                    <!-- 페이지 좌측 부분 -->
-                    <div class="col-lg-4 px-0" >
-                            <img src="https://ifh.cc/g/v9Ht5t.jpg" class="img-fluid" alt="" height="auto">
-                    </div>
-                    <!-- 여백 공간 -->
-                    <div class="col-lg-1 px-0 pt-0"></div>
-                    <!-- 우측 회원가입 부분 -->
-                    <div class="col-lg-7 px-5" id="right">
-                        <div class="right"> 
-                            <form action="{% url 'Register' %}", method = "POST">
+                <div class="row align-items-center p-5" id="content">
+                        <div class="col-lg-4 px-0">
+                            <div class="left_side">
+                                <a href="#"><img src="https://ifh.cc/g/3Na8tF.png" class="img-fluid" alt="" height="auto" ></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 px-5 pt-0">
+                            <form action="{% url 'accounts:SignUp' %}", method="POST">
                                 {% csrf_token %}
-                                    <div class="Register">
-                                        <h2>회원가입</h2>
+                                <div class="right_side">
+                                    <div class="Register_text">
+                                        <h3>회원가입</h3>
+                                        <hr>
                                     </div>
-                                    <div class="line"><hr></div>
-                                
-                                <div class="info">
-                                    <div class="Name">
-                                        <div class="col-lg-9">
-                                            <p><input type="text" name="name" placeholder="Name" onfocus="placeholder=''" onblur="placeholder='Name'" class="form-control my-3 p-2" required></p>
+                                    <div class="Name_form">
+                                        <div class="row g-2">
+                                            <div class="col">
+                                                <input type="text", id = "first_name" name="first_name" placeholder="First Name" onfocus="placeholder=''" onblur="placeholder='First Name'" class="form-control my-3 p-2" required>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text", id = "last_name" name="last_name" placeholder="Last Name" onfocus="placeholder=''" onblur="placeholder='Last Name'" class="form-control my-3 p-2" required>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="ID">                                    
-                                        <div class="col-lg-9">
-                                                <input type="text" name="user_id" placeholder="ID" onfocus="placeholder=''" onblur="placeholder='ID'" class="form-control my-3 p-2" float="right" required>
-                                                <button type="submit" name="Duplicate" class="btn btn-secondary mb-3" float="right">중복확인</button>
-                                        </div>     
+                                    <div class="ID_form">
+                                        <input type="text", id = "lastname" name="username" placeholder="ID" onfocus="placeholder=''" onblur="placeholder='ID'" class="form-control my-3 p-2" float="right" required>
                                     </div>
-                                    <div class="pwd">
-                                        <div class="col-lg-9">
-                                            <p><input type="password" name="user_pw" placeholder="Password" onfocus="placeholder=''" onblur="placeholder='Password'" class="form-control my-3 p-2" required ></p>
-                                        </div>
+                                    <div class="pwd_form">
+                                        <input type="password", id = "password1" name="password1" placeholder="Password" onfocus="placeholder=''" onblur="placeholder='Password'" class="form-control my-3 p-2" required >
                                     </div>
-                                    <div class="age">
-                                        <div class="col-lg-9">
-                                            <p><input type="number" name="age" placeholder="Age" onfocus="placeholder=''" onblur="placeholder='Age'" class="form-control my-3 p-2" required></p>
-                                        </div>
+                                    <div class="pwd_check">
+                                        <input type="password", id = "password2" name="password2" placeholder="Password Confirm" onfocus="placeholder=''" onblur="placeholder='Password'" class="form-control my-3 p-2" required >
+    
                                     </div>
-                                    <div class="email">
-                                        <div class="col-lg-9">
-                                            <p><input type="email" name="email" placeholder="Name@example.com" onfocus="placeholder=''" onblur="placeholder='Name@example.com'" class="form-control my-3 p-2" required></p>
-                                        </div>
+                                    <div class="email_form">
+                                        <input type="email", id = "email" name="email" placeholder="Name@example.com" onfocus="placeholder=''" onblur="placeholder='Name@example.com'" class="form-control my-3 p-2" required>
+    
                                     </div>
-                                    <div class="submit">
-                                        <div class="col-lg-9">
-                                            <p><input type="submit" class="btn1", value="회원 가입"></p>
-                                        </div>
+                                    <div class="Register_button">
+                                        <p><input type="submit" class="btn1", value="회원 가입"></p>
+    
                                     </div>
-                                    <div class="already_account">
-                                        <div class="col-lg-9">
-                                            <p style="color : gray">이미 계정이 있습니까?   <a href="../Login">로그인</a>하기</p>
-                                        </div>
+                                    <div class="already_text">
+                                        <p style="color : gray">이미 계정이 있습니까?   <a href="../Login">로그인</a>하기</p>
+    
                                     </div>
                                 </div>
-                            </form>
+                            </form>    
                         </div>
-                    </div>
                 </div>
             </div>
     </body>
