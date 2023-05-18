@@ -15,8 +15,14 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <div class="log_signup">
-        <button type="button" class="btn btn-outline-dark" onclick="location.href ='#'">로그인</button>
-        <button type="button" class="btn btn-outline-dark" onclick="location.href ='#'">회원가입</button>
+        {% if user.is_authenticated %}
+        {{ user.username }} | 
+        <button type="button" class="btn btn-outline-dark" onclick="location.href ='{% url 'accounts:Logout' %}'">로그아웃</button>
+        <button type="button" class="btn btn-outline-dark" onclick="location.href ='{% url 'accounts:MyPage' %}'">마이페이지</button>
+        {% else %}
+        <button type="button" class="btn btn-outline-dark" onclick="location.href ='{% url 'accounts:Login' %}'">로그인</button>
+        <button type="button" class="btn btn-outline-dark" onclick="location.href ='{% url 'accounts:SignUp' %}'">회원가입</button>
+        {% endif %}
     </div>
     <div class="top_bar">
         <!--좌상단 로고 이미지 넣고 클릭했을때 메인페이지로 이동-->
