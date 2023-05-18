@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from .models import *
 from .forms import UserForm
 
-def signup(request):
+def SignUp(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
@@ -21,4 +21,6 @@ def Home(request):
 def Forget(request):
     return render(request, 'accounts/ps_change.html')
 
+def MyPage(request):
+    return render(request, 'accounts/MyPage.html')
 
