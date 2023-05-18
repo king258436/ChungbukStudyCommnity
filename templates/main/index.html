@@ -23,7 +23,6 @@
         <button type="button" class="btn btn-outline-dark" onclick="location.href ='{% url 'accounts:Login' %}'">로그인</button>
         <button type="button" class="btn btn-outline-dark" onclick="location.href ='{% url 'accounts:SignUp' %}'">회원가입</button>
         {% endif %}
-        
     </div>
     <div class="top_bar">
         <!--좌상단 로고 이미지 넣고 클릭했을때 메인페이지로 이동-->
@@ -44,28 +43,235 @@
                     <a class="list" href="#">
                         <p class="hot_logo">hot</p>
                         <p>게시물 제목 1</p>
-                        <p class="subject_name">과목 이름</p>
-                        
-
+                        <p class="subject_name">과목(게시판) 이름</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
                         <time>xx:xx</time>
-
+                        <hr>
                     </a>
 
+                    <a class="list" href="#">
+                        <p class="hot_logo">hot</p>
+                        <p>게시물 제목 1</p>
+                        <p class="subject_name">과목(게시판) 이름</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+
+                    <a class="list" href="#">
+                        <p class="hot_logo">hot</p>
+                        <p>게시물 제목 2</p>
+                        <p class="subject_name">과목(게시판) 이름</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+
+                    <a class="list" href="#">
+                        <p class="hot_logo">hot</p>
+                        <p>게시물 제목 3</p>
+                        <p class="subject_name">과목(게시판) 이름</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
                 </div>
             </div>
-
         </div>
-        <div class="recent_debate_room"><!—토론방—>
 
+        <div class="recent_debate_room"><!--토론방-->
+            <div class="card">
+                <div class="board">
+                    <h4>토론방</h4>
+                    <a class="list" href="#">
+                        <p>토론방 1</p>
+                        <ul class="status">
+                            <li class="people active">10(사람수)</li>
+                        </ul>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p>토론방 2</p>
+                        <ul class="status">
+                            <li class="people active">10(사람수)</li>
+                        </ul>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p>토론방 3</p>
+                        <ul class="status">
+                            <li class="people active">10(사람수)</li>
+                        </ul>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p>토론방 4</p>
+                        <ul class="status">
+                            <li class="people active">10(사람수)</li>
+                        </ul>
+                        <hr>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="interest_subject1"><!—관심과목 1—>
-
+        <div class="interest_subject1"><!--관심과목 1-->
+            <div class="card">
+                <div class="board">
+                    <h4>
+                        <a>관심과목 1(이름)</a>
+                    </h4>
+                    <a class="list" href="#">
+                        <p class="priority">가장 최근</p>
+                        <p>게시물 제목 1</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">2번째로 최근</p>
+                        <p>게시물 제목 2</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">3번째로 최근</p>
+                        <p>게시물 제목 3</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">4번째로 최근</p>
+                        <p>게시물 제목 4</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="interest_subject2"><!—관심과목 2—>
-
+        <div class="interest_subject2"><!--관심과목 2-->
+            <div class="card">
+                <div class="board">
+                    <h4>
+                        <a>관심과목 2(이름)</a>
+                    </h4>
+                    <a class="list" href="#">
+                        <p class="priority">가장 최근</p>
+                        <p>게시물 제목 1</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">2번째로 최근</p>
+                        <p>게시물 제목 2</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">3번째로 최근</p>
+                        <p>게시물 제목 3</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">4번째로 최근</p>
+                        <p>게시물 제목 4</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="interset_subject3"><!—관심과목 3—>
-
+        <div class="interset_subject3"><!--관심과목 3-->
+            <div class="card">
+                <div class="board">
+                    <h4>
+                        <a>관심과목 3(이름)</a>
+                    </h4>
+                    <a class="list" href="#">
+                        <p class="priority">가장 최근</p>
+                        <p>게시물 제목 1</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">2번째로 최근</p>
+                        <p>게시물 제목 2</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">3번째로 최근</p>
+                        <p>게시물 제목 3</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                    <a class="list" href="#">
+                        <p class="priority">4번째로 최근</p>
+                        <p>게시물 제목 4</p>
+                        <ul class="status">
+                            <li class="vote active">10(따봉)</li>
+                            <li class="comment active">10(댓글수)</li>
+                        </ul>
+                        <time>xx:xx</time>
+                        <hr>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
