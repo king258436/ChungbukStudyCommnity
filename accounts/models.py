@@ -4,8 +4,14 @@ from django.contrib.auth.models import User
 class Lecture(models.Model):
     lectName = models.CharField(max_length = 50)
     professor = models.CharField(max_length = 50)
-    students = models.ManyToManyField(User)
 
     def __str__(self):
         return self.lectName
 
+class LectList(models.Model):
+    myLect = models.ManyToManyField(Lecture)
+    username = models.CharField(max_length = 150)
+
+    def __str__(self):
+        return self.username
+    

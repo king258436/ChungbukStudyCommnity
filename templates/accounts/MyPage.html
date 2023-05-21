@@ -17,8 +17,16 @@
                         <br><h4>내 정보</h4>
                         <hr>
                         <div class="form-floating mb-3">
-                            <input type="text" readonly name="name" id="name" class="form-control" value="김연신">
+                            <input type="text" readonly name="name" id="name" class="form-control" value="{{ userInfo.last_name }} {{userInfo.first_name}}">
                             <label for="name" class="form-label">이름</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" readonly name="userid" id="userid" class="form-control" value="{{ userInfo.username }}">
+                            <label for="userid" class="form-label">아이디</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" readonly name="email" id="email" class="form-control" value="{{ userInfo.email}}">
+                            <label for="email" class="form-label">이메일</label>
                         </div>
                         <div class="form-floating mb-3">
                             <div class="accordion" id="accordionExample">
@@ -31,12 +39,10 @@
                                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#courses_example">
                                         <div class="col-md">
                                             <div class="list-group">
-                                                <a href="과목1 게시판" class="list-group-item list-group-item-action">과목 1</a>
-                                                <a href="과목2 게시판" class="list-group-item list-group-item-action">과목 2</a>
-                                                <a href="과목3 게시판" class="list-group-item list-group-item-action">과목 3</a>
-                                                <a href="과목4 게시판" class="list-group-item list-group-item-action">과목 4</a>
-                                                <a href="과목5 게시판" class="list-group-item list-group-item-action">과목 5</a>
-                                            </div>
+                                                {% for Lect in MyLects %}
+                                                <a href="/" class="list-group-item list-group-item-action">{{Lect.lectName}}</a>
+                                                <!--일단 메인페이지로 가게 설정해두었숩니다 ^^7-->
+                                                {% endfor %}
                                         </div>
                                     </div>
                                 </div>

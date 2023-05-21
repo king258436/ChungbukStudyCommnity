@@ -22,10 +22,12 @@ def Forget(request):
     return render(request, 'accounts/ps_change.html')
 
 def MyPage(request):
-    return render(request, 'accounts/MyPage.html')
+    userInfo = request.user
+    myLects = LectList.objects.get(username = request.user.username)
+    myLects = myLects.myLect.all()
+    return render(request, 'accounts/MyPage.html', { 'MyLects' : myLects, 'userInfo' : userInfo})
 
 def InfoChange(request):
     if request == 'POST':
         pass
     return render(request, 'accounts/MyPageInfoChange.html')
-
