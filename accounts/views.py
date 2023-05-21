@@ -24,3 +24,8 @@ def Forget(request):
 def MyPage(request):
     return render(request, 'accounts/MyPage.html')
 
+def InfoChange(request):
+    if request == 'POST':
+        pass
+    return render(request, 'accounts/MyPageInfoChange.html')
+

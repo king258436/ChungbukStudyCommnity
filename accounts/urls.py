@@ -9,5 +9,6 @@ urlpatterns = [
     path('Logout/', auth_views.LogoutView.as_view(), name = 'Logout'),
     path('Forget/', Forget, name = 'PsChange'),
     path('SignUp/', SignUp, name = 'SignUp'),
-    path('MyPage/', MyPage, name = 'MyPage')
+    path('MyPage/', MyPage, name = 'MyPage'),
+    path('MyPage/InfoChange/', InfoChange, name = 'MyPageInfoChange' ),
 ]

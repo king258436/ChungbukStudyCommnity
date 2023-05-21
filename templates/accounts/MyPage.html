@@ -1,4 +1,4 @@
-    {% extends 'Base.html' %}
+    {% extends 'accounts/Base.html' %}
     {% block content %}
         <!-- 마이페이지 본문 -->
         <div class="container">
@@ -6,8 +6,8 @@
                 <!-- 좌측 사이드 페이지 탭 -->
                 <div class="col-lg-4 pt-5">
                     <div class="list-group">
-                        <a href="{url 'accounts:MyPage'}" id="current" class="list-group-item list-group-item-action active" aria-current="true">내 정보</a>
-                        <a href="{url 'accounts:ChangeInfo'}" class="list-group-item list-group-item-action">정보 변경</a>
+                        <a href="{% url 'accounts:MyPage' %}" id="current" class="list-group-item list-group-item-action active" aria-current="true">내 정보</a>
+                        <a href="{% url 'accounts:MyPageInfoChange' %}" class="list-group-item list-group-item-action">정보 변경</a>
                         <a href="#" class="list-group-item list-group-item-action">Tap 3</a>
                         <a href="#" class="list-group-item list-group-item-action">Tap 4</a>
                     </div>

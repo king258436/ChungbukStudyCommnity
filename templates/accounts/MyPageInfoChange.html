@@ -1,4 +1,4 @@
-        {% extends 'base.html' %}
+        {% extends 'accounts/Base.html' %}
         {% block content %}
         <!-- 마이페이지 본문 -->
         <div class="container">
@@ -7,15 +7,15 @@
                 <div class="col-lg-4 pt-5">
                     <!-- active 입력된 리스트는 현재 선택한 리스트를 의미함 리스트를 클릭하면 해당 페이지로 이동 -->
                     <div class="list-group">
-                        <a href="../MyPageInfo" class="list-group-item list-group-item-action">내 정보</a>
-                        <a href="../MyPageInfoChange" id="current" class="list-group-item list-group-item-action active" aria-current="true">정보 변경</a>
+                        <a href="{% url 'accounts:MyPage' %}" class="list-group-item list-group-item-action">내 정보</a>
+                        <a href="{% url 'accounts:MyPageInfoChange' %}" id="current" class="list-group-item list-group-item-action active" aria-current="true">정보 변경</a>
                         <a href="#" class="list-group-item list-group-item-action">Tap 3</a>
                         <a href="#" class="list-group-item list-group-item-action">Tap 4</a>
                       </div>
                 </div>
                 <!-- 정보 변경 부분 -->
                 <div class="col-lg-7">
-                    <form action="{% url '' %}", method="">
+                    <form action="{% url 'accounts:MyPageInfoChange' %}", method="POST">
                         <br><h4>정보 변경</h4>
                         <hr>
                         <!-- 새로운 이름 입력 부분 id, name = new_name -->
