@@ -10,9 +10,9 @@
 .container p.hot_logo{
     color: red
 }
-.container {
+div#popular-post {
     border: 1px solid black;
-    width: 800px;
+    width: 900px;
 }
 
 .container h3 a{
@@ -31,10 +31,14 @@ a.list{
     text-decoration: none;
     color:black
 }
-
 .recent_debate_room .card .container{
-    width:380px;
+    width:440px;
+    border: 1px solid black;
 }
 .interest_subject .card .container{
-    width:380px;
+    width:440px;
+    border: 1px solid black;
+}
+h3,h4{
+    text-align : center
 }
