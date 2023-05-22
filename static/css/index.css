@@ -1,0 +1,40 @@
+
+
+.card .list{
+    text-align: center;
+}
+.interest_subject{
+    text-align: center;
+}
+
+.container p.hot_logo{
+    color: red
+}
+.container {
+    border: 1px solid black;
+    width: 800px;
+}
+
+.container h3 a{
+    text-align: center;
+}
+.container .list{
+    display: flex;
+}
+.container .list p {
+    flex-grow: 1;
+}
+.container .list p.post-title {
+    flex-grow: 5;
+}
+a.list{
+    text-decoration: none;
+    color:black
+}
+
+.recent_debate_room .card .container{
+    width:380px;
+}
+.interest_subject .card .container{
+    width:380px;
+}
