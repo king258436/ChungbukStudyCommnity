@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, models
 from django.shortcuts import render,redirect
 from .models import *
 from .forms import UserForm
@@ -17,17 +17,32 @@ def SignUp(request):
 
 def Home(request):
     return render(request, 'accounts/home.html')
-    
-def Forget(request):
-    return render(request, 'accounts/ps_change.html')
 
 def MyPage(request):
     userInfo = request.user
     myLects = LectList.objects.get(username = request.user.username)
     myLects = myLects.myLect.all()
-    return render(request, 'accounts/MyPage.html', { 'MyLects' : myLects, 'userInfo' : userInfo})
+    return render(request, 'accounts/mypage/MyPage.html', { 'MyLects' : myLects, 'userInfo' : userInfo})
 
 def InfoChange(request):
-    if request == 'POST':
+    if request.method == 'POST':
         pass
-    return render(request, 'accounts/MyPageInfoChange.html')
+    return render(request, 'accounts/mypage/MyPageInfoChange.html')
+
+def PsChange(request,user):
+    if request.method == 'POST':
+        pass
+    return render(request, 'accounts/PsChange.html')
+
+def Forget(request):
+    warn = "동무, 그런 아이디는 존재하지 않습네다!"
+    error = 0
+    if request.method == "POST":
+        userName = request.POST.get('username')
+        try:#해당 이름을 가진 유저가 존재합디다.
+            valid = User.objects.get(username = userName)
+            return PsChange(request,valid)
+        except: # 아니오 동무 그렇지 않습네다.
+            error = 1
+    return render(request, 'accounts/Forget.html', {'warning' : warn, 'error' : error})
+
