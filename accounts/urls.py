@@ -12,4 +12,5 @@ urlpatterns = [
     path('SignUp/', SignUp, name = 'SignUp'),
     path('MyPage/', MyPage, name = 'MyPage'),
     path('MyPage/InfoChange/', InfoChange, name = 'MyPageInfoChange'),
+    path('MyPage/ManageSub/', ManageSub, name = 'ManageSub' )
 ]

@@ -29,7 +29,7 @@ def InfoChange(request):
         pass
     return render(request, 'accounts/mypage/MyPageInfoChange.html')
 
-def PsChange(request,user):
+def PsChange(request):
     if request.method == 'POST':
         pass
     return render(request, 'accounts/PsChange.html')
@@ -40,9 +40,13 @@ def Forget(request):
     if request.method == "POST":
         userName = request.POST.get('username')
         try:#해당 이름을 가진 유저가 존재합디다.
-            valid = User.objects.get(username = userName)
-            return PsChange(request,valid)
+            valid = User.objects.get(Username = userName)
+            return render(request, 'accounts/PsChange.html')
         except: # 아니오 동무 그렇지 않습네다.
             error = 1
     return render(request, 'accounts/Forget.html', {'warning' : warn, 'error' : error})
 
+def ManageSub(request):
+    if request.method == "POST":
+        pass
+    return render(request, 'accounts/mypage/ManageSub.html')
