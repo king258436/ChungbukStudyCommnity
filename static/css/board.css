@@ -1,6 +1,13 @@
 #board_list{
-    background-color: #A4B0ED;
+    background-color: #ffb922;
 }
 body{
     background-color: white;
+}
+
+#nav_item{
+    min-width: 100px;
+    font-size:24px;
+    font-weight:bold;
+    justify-content: center;
 }
