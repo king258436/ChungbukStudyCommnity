@@ -8,7 +8,7 @@ def SignUp(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return render(request, 'main/index.html')
     else:
         form = UserForm()
     return render(request, 'accounts/SignUp.html', {'form': form})

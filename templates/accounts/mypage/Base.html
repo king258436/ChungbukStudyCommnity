@@ -49,11 +49,18 @@
             <!-- 우측 홈페이지, 로그아웃 버튼 -->
             <form class="d-flex flex-row justify-content-end">
                 <table>
+                    {% if user.is_authenticated %}
                     <td class="greet_user"><div>{{user.username}}님 환영합니다!</div></td> 
                     <td>                    
-                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='{%url 'main:home'%}'">홈페이지</button>
+                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='{%url 'accounts:MyPage'%}'">마이페이지</button>
                         <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='{%url 'accounts:Logout'%}'">로그아웃</button>
                     </td>
+                    {% else %}
+                    <td>                    
+                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='{%url 'accounts:Login'%}'">로그인</button>
+                        <button class="btn btn-outline-dark me-2" type="button" onclick="location.href='{%url 'accounts:SignUp'%}'">회원가입</button>
+                    </td>
+                    {% endif %}
                 </table>
 
             </form>
