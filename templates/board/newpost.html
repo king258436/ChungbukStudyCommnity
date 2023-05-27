@@ -1,38 +1,49 @@
 {% extends 'Base.html' %}
 {% block content %}
 <div class="container">
-    <div class="row mt-5">
-        <!-- 좌측 사이드 카테고리 부분 -->
-        <div class="col-lg-2" id="board_list">
-            <br><h5>게시판</h5>
-            <hr>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">게시판 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">게시판 2</a>
-                </li>
-
-            </ul>
+    <div class="row">
+        <!-- 좌측 사이드 카테고리 시작 부분 -->
+        <div class="col-lg-2">
+            <br><h4 style="color: white;">어캐찾앗누?</h4><br>
+            <table class="table" style="table-layout:fixed">
+                <thead>
+                    <tr class="text-center table-dark">
+                        <th>                            
+                            게시판
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="text-center"> 
+                    <tr>
+                        <td>
+                            <a href="#" style="text-decoration: none; color: black;">게시판 1</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#" style="text-decoration: none; color: black;">게시판 2</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <!-- 좌측 카테고리 끝 부분 -->
+        <!-- 좌측 사이드 카테고리 끝 부분 -->
 
         <!-- 여백 부분 -->
         <div class="col-auto"></div>
 
         <!-- 글쓰기 부분 -->
         <div class="col-lg-9" style="height:1000px";>
-            <h4>글쓰기 페이지</h4>
+            <br><h4>글쓰기 페이지</h4>
             <form method="POST">
                 {% csrf_token %}
                 <!-- 제목 입력 부분 -->
                 <label for="postname">제목</label><br>
-                <input type="text" class="form-control" id="postname" name="postname"><br>
+                <input type="text" class="form-control" id="postname" name="postname" required><br>
 
                 <!-- 내용 입력 부분 -->
                 <label for="contents">내용</label><br>
-                <textarea class="form-control" rows="10" id="contents" name="contents"></textarea><br>
+                <textarea class="form-control" rows="10" id="contents" name="contents" required></textarea><br>
 
                 <!-- 파일 선택 -->
                 <input  type="file" name="mainphoto"><br><br>
