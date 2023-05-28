@@ -25,25 +25,34 @@ def MyPage(request):
     return render(request, 'accounts/mypage/MyPage.html', { 'MyLects' : myLects, 'userInfo' : userInfo})
 
 def InfoChange(request):
-    if request.method == 'POST':
-        pass
     return render(request, 'accounts/mypage/MyPageInfoChange.html')
 
-def PsChange(request):
+def PsChange(request,userName):
+    user = User.objects.get(username = userName)
+    error = 0
     if request.method == 'POST':
-        pass
-    return render(request, 'accounts/PsChange.html')
+        pwd = request.POST.get('pwd')
+        pwdConfirm = request.POST.get('pwdConfirm')
+        print(pwd)
+        print(pwdConfirm)
+        if(pwd!=pwdConfirm):
+            error=1
+            return render(request, 'accounts/PsChange.html', {'username' : userName, 'error' : error})
+        else:
+            user.set_password(pwd)
+            user.save()
+            return render(request, 'accounts/login.html')
+    return render(request, 'accounts/PsChange.html', {'username' : userName, 'error' : error})
 
 def Forget(request):
     warn = "동무, 그런 아이디는 존재하지 않습네다!"
     error = 0
     if request.method == "POST":
         userName = request.POST.get('username')
-        try:#해당 이름을 가진 유저가 존재합디다.
-            valid = User.objects.get(Username = userName)
-            return render(request, 'accounts/PsChange.html')
-        except: # 아니오 동무 그렇지 않습네다.
-            error = 1
+        print(userName)
+        url = '/accounts/PsChange/'+userName
+        print(url)
+        return redirect(url)
     return render(request, 'accounts/Forget.html', {'warning' : warn, 'error' : error})
 
 def ManageSub(request):
