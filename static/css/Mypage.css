@@ -2,7 +2,7 @@
     box-sizing: content-box;
 } 
 body{
-    background: rgb(185, 178, 178);
+    background: white;
 }
 .row{
     background: white;
@@ -32,4 +32,10 @@ body{
 .greet_user{
     font-weight: bold;
     padding-right: 10px;
+}
+#sublist{
+    border-top: 1px inherit;
+}
+.input_group{
+    width: 300px;
 }

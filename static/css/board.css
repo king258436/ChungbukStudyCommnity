@@ -11,3 +11,10 @@ body{
     font-weight:bold;
     justify-content: center;
 }
+#board_list{
+    text-decoration: none;
+    color: black;
+}
+#select_btn{
+    border-color: beige;
+}
