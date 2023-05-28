@@ -24,6 +24,27 @@
         .card {
             color: rgb(0, 0, 0);
         }
+
+        div#wrap div {
+            display: inline-block;
+            border-radius: 16px;
+            background-color: #ffebb5;
+            box-shadow: inset 0 0 8px #deb13a;
+            margin: 50px;
+            padding: 15px;
+        }
+
+        .write td {
+            border-bottom: 1px solid #444444;
+            padding: 10px;
+        }
+
+        .hot {
+            color: red
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
     </style>
 </head>
 
@@ -42,61 +63,69 @@
             </div>
         </section>
     </header>
-    <div class="container" style="text-align : center">
-        <table border="2" style="display : inline-block">
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-        </table>
+    <div class="container" id="wrap" style="text-align : center;">
+        <div>
+            <h2 style="font-family: 'Black Han Sans', sans-serif" ;>인기 게시물</h2>
+            <table width="500" height="300">
+                <tr class="write">
+                    <td class="hot">hot</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
+                    <!--게시글 링크-->
+                    <td>좋아요 : </td>
+                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
+                </tr>
+                <tr class="write">
+                    <td class="hot">hot</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
+                    <td>좋아요 : </td>
+                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
+                </tr>
+                <tr class="write">
+                    <td class="hot">hot</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
+                    <td>좋아요 : </td>
+                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
+                </tr>
+                <tr class="write">
+                    <td class="hot">hot</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
+                    <td>좋아요 : </td>
+                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
+                </tr>
+            </table>
+        </div>
 
+        <div>
+            <h2 style="font-family: 'Black Han Sans', sans-serif" ;>수강중인 과목</h2>
+            <table width="500" height="300">
 
-        <table border="2" style="display : inline-block">
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-            <tr>
-                <td>hot</td>
-                <td>글 이름</td>
-                <td>좋아요</td>
-                <td>과목</td>
-            </tr>
-        </table>
+                <tr class="write">
+                    <td>1</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
+                    <!--과목 이름에 해당하는 과목 게시판링크를 달아주세요.-->
+                    <td>인원수 : </td>
+                    <td>추천 : </td>
+                </tr>
+                <tr class="write">
+                    <td>2</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
+                    <td>인원수 : </td>
+                    <td>추천 : </td>
+                </tr>
+                <tr class="write">
+                    <td>3</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
+                    <td>인원수 : </td>
+                    <td>추천 : </td>
+                </tr>
+                <tr class="write">
+                    <td>4</td>
+                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
+                    <td>인원수 : </td>
+                    <td>추천 : </td>
+                </tr>
+            </table>
+        </div>
 
     </div>
 
