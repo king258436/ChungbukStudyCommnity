@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, models
 from django.shortcuts import render,redirect
 from .models import *
-from .forms import UserForm
+from .forms import *
 
 def SignUp(request):
     if request.method == "POST":
@@ -19,10 +19,17 @@ def Home(request):
     return render(request, 'accounts/home.html')
 
 def MyPage(request):
+    error = 0
     userInfo = request.user
-    myLects = LectList.objects.get(username = request.user.username)
-    myLects = myLects.myLect.all()
-    return render(request, 'accounts/mypage/MyPage.html', { 'MyLects' : myLects, 'userInfo' : userInfo})
+    myLect = []
+    try:
+        myLect = LectList.objects.get(username = request.user.username)
+        myLect = myLect.myLects.all()
+        if(len(myLect) == 0):
+            error = 1
+    except:
+        error=1
+    return render(request, 'accounts/mypage/MyPage.html', { 'MyLects' : myLect, 'userInfo' : userInfo, 'error' : error})
 
 def InfoChange(request):
     return render(request, 'accounts/mypage/MyPageInfoChange.html')
@@ -56,6 +63,19 @@ def Forget(request):
     return render(request, 'accounts/Forget.html', {'warning' : warn, 'error' : error})
 
 def ManageSub(request):
-    if request.method == "POST":
+    lectList = Lecture.objects.all()
+    try:
+        myLect = LectList.objects.get(username = request.user.username).myLects
+    except:
+        myLect = LectList(username = request.user.username)
+        myLect.save()
+    realLectList = []
+    for i in lectList:
+        try:
+            myLect.get(lectName = i.lectName, professor = i.professor)
+        except:
+            print(i)
+            realLectList.append(i)    
+    if request.method == 'POST':
         pass
-    return render(request, 'accounts/mypage/ManageSub.html')
+    return render(request, 'accounts/mypage/ManageSub.html', {'lectList' : realLectList})

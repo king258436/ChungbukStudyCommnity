@@ -9,7 +9,7 @@ class Lecture(models.Model):
         return self.lectName
 
 class LectList(models.Model):
-    myLect = models.ManyToManyField(Lecture)
+    myLects = models.ManyToManyField(Lecture)
     username = models.CharField(max_length = 150)
 
     def __str__(self):

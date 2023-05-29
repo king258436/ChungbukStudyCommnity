@@ -46,11 +46,17 @@
                                 <!-- 수강중인 과목 리스트 시작 부분 -->
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#courses_example">
                                     <div class="col-md">
+                                        {% if error == 0 %}
                                         <div class="list-group">
-                                            {% for Lect in MyLects %}
-                                            <a href="/" class="list-group-item list-group-item-action">{{Lect.lectName}}</a>
+                                            {% for lect in MyLects %}
+                                            <a href="/" class="list-group-item list-group-item-action">{{lect.lectName}}</a>
                                             <!--일단 메인페이지로 가게 설정해두었숩니다 ^^7-->
                                             {% endfor %}
+                                        {% else %}
+                                        <div>
+                                              수강중인 강의가 없습니다. 강의 관리에서 현재 수강중인 강의를 추가해주세요!
+                                        </div>
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>

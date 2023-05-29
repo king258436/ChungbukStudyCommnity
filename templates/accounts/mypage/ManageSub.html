@@ -24,42 +24,32 @@
                     </div>
 
                 </div>
+                <table>
+                    <td style="min-width: 100px;">
+                        <input class="form-check-input" type="radio" value="" name="condition" id="subname">
+                        <label class="form-check-label" for="subname">강의명</label>
+                    </td>
+                    <td>
+                        <input class="form-check-input" type="radio" value="" name="condition" id="profname">
+                        <label class="form-check-label" for="profname">교수명</label>
+                    </td>
+                </table>
                 <div class="form-floating" id="select_subject" style="overflow:auto; height: 300px;">
-                    <table>
-                        <td style="min-width: 100px;">
-                            <input class="form-check-input" type="radio" value="" name="condition" id="subname">
-                            <label class="form-check-label" for="subname">강의명</label>
-                        </td>
-                        <td>
-                            <input class="form-check-input" type="radio" value="" name="condition" id="profname">
-                            <label class="form-check-label" for="profname">교수명</label>
-                        </td>
-                    </table>
                     <table class="table" id="sublist">
                         <!-- 이 부분 lectlist db 반복해서 출력 해주면 될 듯 id를 각각 따로 설정해줄 수 있으면 좋을 듯 -->
+                        {% for lect in lectList %}
                         <tr style="justify-content: center;">
                             <td>
                                 <input class="form-check-input" type="checkbox" value="" id="subject_1"> 
                             </td>
                             <td style="width:60%;">
-                                <label class="form-check-label" for="subject_1">자료구조</label>
+                                <label class="form-check-label" for="subject_1">{{lect.lectName}}</label>
                             </td>
                             <td style="width:40%; text-align: center;">
-                                <label class="form-check-label" for="subject_1">이의종</label>
+                                <label class="form-check-label" for="subject_1">{{lect.professor}}</label>
                             </td>
                         </tr>
-                        <tr style="justify-content: center;">
-                            <td>
-                                <input class="form-check-input" type="checkbox" value="" id="subject_1"> 
-                            </td>
-                            <td style="width:60%;">
-                                <label class="form-check-label" for="subject_1">자료구조</label>
-                            </td>
-                            <td style="width:40%; text-align: center;">
-                                <label class="form-check-label" for="subject_1">이의종</label>
-                            </td>
-                        </tr>
-
+                        {% endfor %}
                     </table>
 
                 </div>
