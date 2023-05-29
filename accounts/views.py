@@ -19,8 +19,8 @@ def Home(request):
     return render(request, 'accounts/index.html')
 
 def MyPage(request):
-    if not request.user.is_authenticated:
-        return render(request, 'main/index.html')
+    if not request.user.is_authenticated: #유효성검사
+        return redirect("main:home")
     error = 0
     userInfo = request.user
     myLect = []
@@ -34,6 +34,8 @@ def MyPage(request):
     return render(request, 'accounts/mypage/MyPage.html', { 'MyLects' : myLect, 'userInfo' : userInfo, 'error' : error})
 
 def InfoChange(request):
+    if not request.user.is_authenticated: #유효성검사
+        return redirect("main:home")
     error = 0
     warn = ''
     if request.method == "POST":
@@ -60,8 +62,7 @@ def InfoChange(request):
 
 def ManageSub(request):
     if not request.user.is_authenticated: #유효성검사
-        print("어림도없제 ㅋㅋ")
-        return render(request, 'main/index.html')
+        return redirect("main:home")
     lectList = Lecture.objects.all()
     try:#현재 수강중인 강의가 있는가? 또는 처음 이 곳을 방문하는 것인가? 
         myLect = LectList.objects.get(username = request.user.username).myLects
@@ -88,14 +89,10 @@ def ManageSub(request):
             user = LectList.objects.get(username = request.user.username)
             for i in range(0,len(realLectList)):
                 checkbox = request.POST.get(f'subject{i}')
-                print(i,' ',checkbox)
                 if checkbox == '':
-                    print(i)
                     user.myLects.add(realLectList[i])
             user.save()
             return redirect('accounts:MyPage')
-        else:
-            print("무야통")
         
     #추가하기 눌렀을 때 작동하는 파트 
     
@@ -106,16 +103,16 @@ def Forget(request):
     error = 0
     if request.method == "POST":
         userName = request.POST.get('username')
-        print(userName)
-        url = '/accounts/PsChange/'+userName
-        print(url)
-        return redirect(url)
+        try:
+            user = User.objects.get(username = userName) #유효성검사
+            url = '/accounts/PsChange/'+userName
+            return redirect(url)
+        except:
+            error=1
     return render(request, 'accounts/Forget.html', {'warning' : warn, 'error' : error})
 
 
 def PsChange(request,userName):
-    if not request.user.is_authenticated:
-        return render(request, 'main/index.html')
     user = User.objects.get(username = userName)
     error = 0
     if request.method == 'POST':

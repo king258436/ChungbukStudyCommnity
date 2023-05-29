@@ -37,62 +37,45 @@
         <div>
             <h2 style="font-family: 'Black Han Sans', sans-serif" ;>인기 게시물</h2>
             <table width="500" height="300">
+                {% if PostCheck %}
+                {% for hot in hotPost %}
                 <tr class="write">
                     <td class="hot">hot</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
+                    <td onclick="location.href='{%url 'main:home' %}'" style="cursor:pointer;">{{hot.title}}</td>
                     <!--게시글 링크-->
                     <td>좋아요 : </td>
-                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
+                    <td onclick="location.href='{%url 'main:home' %}'">{{hot.lectName}}</td><!--과목 게시판 링크-->
                 </tr>
-                <tr class="write">
-                    <td class="hot">hot</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
-                    <td>좋아요 : </td>
-                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
-                </tr>
-                <tr class="write">
-                    <td class="hot">hot</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
-                    <td>좋아요 : </td>
-                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
-                </tr>
-                <tr class="write">
-                    <td class="hot">hot</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">(글 이름)</td>
-                    <td>좋아요 : </td>
-                    <td onclick="location.href='{%url }'">(과목)</td><!--과목 게시판 링크-->
-                </tr>
+                {% endfor %}
+                {% endif %}
             </table>
         </div>
 
         <div>
             <h2 style="font-family: 'Black Han Sans', sans-serif" ;>수강중인 과목</h2>
             <table width="500" height="300"> <!-- 후에 변경시 4개씩 보여지도록 만들것 버튼으로 보여지는거 다르게 ㄱ-->
+                {% if user.is_authenticated %}
+                {% if haveLect %}
+                {% for lect in lectList %}
                 <tr class="write">
-                    <td>1</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
+                    <td>{{forloop.counter}}</td>
+                    <td onclick="location.href='{%url 'main:home'%}'" style="cursor:pointer;">{{lect.lectName}}</td>
                     <!--과목 이름에 해당하는 과목 게시판링크를 달아주세요.-->
-                    <td>인원수 : </td>
-                    <td>추천 : </td>
+                    <td>{{lect.professor}}</td>
+                    <td></td>
                 </tr>
+                {% endfor %}
+                {% else %}
                 <tr class="write">
-                    <td>2</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
-                    <td>인원수 : </td>
-                    <td>추천 : </td>
+                    <td> 이런! 아직 수강중인 강의가 없어요.. 아래에 링크로 강의를 추가해주세요! </td>
+                    <td href = "{% url 'accounts:ManageSub' %}">강의추가하기</td>
                 </tr>
+                {% endif %}
+                {% else %}
                 <tr class="write">
-                    <td>3</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
-                    <td>인원수 : </td>
-                    <td>추천 : </td>
+                    <td> 로그인이 필요해요. 로그인 또는 회원가입을 해주세요! </td>
                 </tr>
-                <tr class="write">
-                    <td>4</td>
-                    <td onclick="location.href='{%url 'board:Vision'%}'" style="cursor:pointer;">과목 이름 : </td>
-                    <td>인원수 : </td>
-                    <td>추천 : </td>
-                </tr>
+                {% endif %}
             </table>
         </div>
     </div>
