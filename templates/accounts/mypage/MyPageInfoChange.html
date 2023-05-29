@@ -16,9 +16,8 @@
         <!-- 정보 변경 시작 부분 -->
         <div class="col-lg-7 pt-5">
             <form action="{% url 'accounts:MyPageInfoChange' %}", method="POST">
+                {% csrf_token %}
                 <h5>정보 변경</h5><hr>
-
-
                 <!-- 현재 비밀번호 입력 부분 -->
                 <div class="form-floating mb-3">
                     <input type="password" id="user_pw" name="user_pw" class="form-control"  placeholder="Password" onfocus="placeholder=''" onblur="placeholder='Password'" required>
@@ -36,15 +35,15 @@
                     <input type="password" id="new_user_pw_check" name="new_user_pw_check" class="form-control" placeholder="Password" onfocus="placeholder=''" onblur="placeholder='Password'" required>
                     <label for="new_user_pw_check" class="form-label">변경할 비밀번호(확인)</label> 
                 </div>
-
-                <!-- 새로운 이메일 입력 부분 -->
-                <div class="form-floating mb-3">
-                    <input type="email" id="new_email" name="new_email" placeholder="Name@example.com" class="form-control" onfocus="placeholder=''" onblur="placeholder='Name@example.com'" required>
-                    <label for="email" class="form-label">변경할 이메일</label>
-                </div>
-
                 <!-- 변경 버튼 -->
                 <br><p><input type="submit" class="btn1" value="변경"></p>
+                {% if error %}
+                <div class="alert alert-danger">
+                    <div>
+                        {{warn}}
+                    </div>
+                </div>
+                {% endif %}
             </form>
         </div>
         <!-- 정보 변경 끝 부분 -->

@@ -16,9 +16,11 @@ def SignUp(request):
 #마이 페이지에서 사용할 함수 
 
 def Home(request):
-    return render(request, 'accounts/home.html')
+    return render(request, 'accounts/index.html')
 
 def MyPage(request):
+    if not request.user.is_authenticated:
+        return render(request, 'main/index.html')
     error = 0
     userInfo = request.user
     myLect = []
@@ -32,39 +34,36 @@ def MyPage(request):
     return render(request, 'accounts/mypage/MyPage.html', { 'MyLects' : myLect, 'userInfo' : userInfo, 'error' : error})
 
 def InfoChange(request):
-    return render(request, 'accounts/mypage/MyPageInfoChange.html')
-
-def PsChange(request,userName):
-    user = User.objects.get(username = userName)
     error = 0
-    if request.method == 'POST':
-        pwd = request.POST.get('pwd')
-        pwdConfirm = request.POST.get('pwdConfirm')
-        print(pwd)
-        print(pwdConfirm)
-        if(pwd!=pwdConfirm):
-            error=1
-            return render(request, 'accounts/PsChange.html', {'username' : userName, 'error' : error})
-        else:
-            user.set_password(pwd)
-            user.save()
-            return render(request, 'accounts/login.html')
-    return render(request, 'accounts/PsChange.html', {'username' : userName, 'error' : error})
-
-def Forget(request):
-    warn = "동무, 그런 아이디는 존재하지 않습네다!"
-    error = 0
+    warn = ''
     if request.method == "POST":
-        userName = request.POST.get('username')
-        print(userName)
-        url = '/accounts/PsChange/'+userName
-        print(url)
-        return redirect(url)
-    return render(request, 'accounts/Forget.html', {'warning' : warn, 'error' : error})
+        user = request.user
+        pwd = request.POST.get('user_pw')
+        chPwd = request.POST.get('new_user_pw')
+        confirmPwd = request.POST.get('new_user_pw_check')
+        user = authenticate(username = user.username, password = pwd)
+        if user is not None:
+            if chPwd==confirmPwd:
+                username = request.user.username
+                user.set_password(chPwd)
+                user.save()
+                userdata = authenticate(request, username =username, password = chPwd)
+                login(request, userdata)
+                return redirect("accounts:MyPage")
+            else:
+                error=1
+                warn = "변경할 비밀번호가 변경할 비밀번호 확인 부분과 일치하지 않습니다. "
+        else:
+            error=1
+            warn = "현재 비밀번호가 일치하지 않습니다."
+    return render(request, 'accounts/mypage/MyPageInfoChange.html', {'error' : error, 'warn' : warn})
 
 def ManageSub(request):
+    if not request.user.is_authenticated: #유효성검사
+        print("어림도없제 ㅋㅋ")
+        return render(request, 'main/index.html')
     lectList = Lecture.objects.all()
-    try:
+    try:#현재 수강중인 강의가 있는가? 또는 처음 이 곳을 방문하는 것인가? 
         myLect = LectList.objects.get(username = request.user.username).myLects
     except:
         myLect = LectList(username = request.user.username)
@@ -74,8 +73,59 @@ def ManageSub(request):
         try:
             myLect.get(lectName = i.lectName, professor = i.professor)
         except:
-            print(i)
             realLectList.append(i)    
     if request.method == 'POST':
-        pass
+        if 'search_btn' in request.POST: # 검색버튼인경우
+            realLectList = []
+            search = request.POST.get('search_subject')
+            lectList = Lecture.objects.filter(lectName__icontains = search)
+            for i in lectList:
+                try:
+                    myLect.get(lectName = i.lectName, professor = i.professor)    
+                except:
+                    realLectList.append(i)
+        elif 'add_btn' in request.POST:
+            user = LectList.objects.get(username = request.user.username)
+            for i in range(0,len(realLectList)):
+                checkbox = request.POST.get(f'subject{i}')
+                print(i,' ',checkbox)
+                if checkbox == '':
+                    print(i)
+                    user.myLects.add(realLectList[i])
+            user.save()
+            return redirect('accounts:MyPage')
+        else:
+            print("무야통")
+        
+    #추가하기 눌렀을 때 작동하는 파트 
+    
     return render(request, 'accounts/mypage/ManageSub.html', {'lectList' : realLectList})
+
+def Forget(request):
+    warn = "일치하는 아이디가 존재하지 않습니다. 다시 입력해주세요."
+    error = 0
+    if request.method == "POST":
+        userName = request.POST.get('username')
+        print(userName)
+        url = '/accounts/PsChange/'+userName
+        print(url)
+        return redirect(url)
+    return render(request, 'accounts/Forget.html', {'warning' : warn, 'error' : error})
+
+
+def PsChange(request,userName):
+    if not request.user.is_authenticated:
+        return render(request, 'main/index.html')
+    user = User.objects.get(username = userName)
+    error = 0
+    if request.method == 'POST':
+        pwd = request.POST.get('pwd')
+        pwdConfirm = request.POST.get('pwdConfirm')
+        if(pwd!=pwdConfirm):
+            error=1
+            return render(request, 'accounts/PsChange.html', {'username' : userName, 'error' : error})
+        else:
+            user.set_password(pwd)
+            user.save()
+            return render(request, 'accounts/login.html')
+    return render(request, 'accounts/PsChange.html', {'username' : userName, 'error' : error})
