@@ -1,0 +1,54 @@
+{% extends 'Base.html' %}
+{% block content %}
+
+<title>게시판</title>
+<link rel="stylesheet" href="">
+    <!-- body -->
+    <div class="container">
+        <div class="row">
+            <!-- 여백 -->
+            <div class="col-auto"></div>
+            <!-- 우측 본문 시작 부분 -->
+            <div class="col-lg-9" style="height: 1000px;"> 
+                <div class="row">
+                    <div class="col-md">
+                        <br><h4>게시판 목록</h4><br>
+                    </div>
+                <table class="table"  style="table-layout: fixed;">
+                    <!-- 테이블 너비 비율 조정해놓은 부분 -->
+                    <colgroup>
+                        <col width="10%">
+                        <col max-width="60%">
+                        <col width="15%">
+                        <col width="15%">
+                    </colgroup>
+
+                    <!-- 글 목록 상단 바 -->
+                    <thead>
+                        <tr class="text-center table-dark">
+                            <th>번호</th>
+                            <th>강좌명</th>
+                            <th>교수님</th>
+                        </tr>
+                    </thead>
+
+                    <!-- 글 목록 부분 -->
+                    <tbody>
+                    {% for lect in lectList %}
+                        <!-- 게시판(postlist)의 게시글(list)을 하나씩 보여줍니다 -->
+                        <!-- {와 %로 이루어진 구문 내부엔 파이썬이 사용됩니다 -->
+                        <!-- 게시글 클릭시 세부페이지로 넘어갑니다-->
+                        <tr>
+                            <td class="text-center">{{forloop.revcounter}}</td>
+                            <td class="text-start" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; "><a href="/board/post/{{lect.lectName}}" style="color:black; text-decoration: none;">{{lect.lectName}}</a></td>
+                            <td class="text-center">{{lect.professor}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 우측 본문 끝 부분 -->
+        </div>
+    </div>
+{% endblock %}

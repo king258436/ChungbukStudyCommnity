@@ -23,16 +23,16 @@
 
         <!-- 작성된 게시글 본문 시작 -->
         <div class="col-lg-9" style="height:1000px">
-                    <h1>게시글 개별 페이지입니다</h1>
+                    <h1>CBNU Study</h1>
                     <!-- 글 제목 -->
                     <hr>
-                        <p style="word-break: break-all;">{{post.postname}}</p>
+                        <p style="word-break: break-all;">{{post.title}}</p>
                     <hr>
                     <!-- 작성자 이름 -->
-                    작성자 이름
+                    {{post.author}}
                     <hr>
                     <!-- 글 내용 -->
-                    <div id="contents" style="min-height:500px"><p style="word-break: break-all;">{{post.contents}}</p></div>
+                    <div id="contents" style="min-height:500px"><p style="word-break: break-all;">{{post.content}}</p></div>
 
                     <!-- 이미지 보여주기 -->
                     {% if post.mainphoto %}
@@ -47,7 +47,7 @@
                 <!-- 우측 하단 버튼들 -->
                 <div id="btn_posting" style="float:right;">
                     <!-- 글 목록으로 돌아가는 버튼 -->
-                    <a href="{% url 'board:Vision' %}"><button class="btn btn-outline-secondary" type="button">목록</button></a>
+                    <a href="{% url 'board:board' lectName %}"><button class="btn btn-outline-secondary" type="button">목록</button></a>
                     
                     <!-- 글 삭제 버튼 시작 부분 -->
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">

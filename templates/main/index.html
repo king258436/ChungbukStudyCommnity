@@ -38,13 +38,13 @@
             <h2 style="font-family: 'Black Han Sans', sans-serif" ;>인기 게시물</h2>
             <table width="500" height="300">
                 {% if PostCheck %}
-                {% for hot in hotPost %}
+                {% for hot in postinfo %}
                 <tr class="write">
                     <td class="hot">hot</td>
-                    <td onclick="location.href='{%url 'main:home' %}'" style="cursor:pointer;">{{hot.title}}</td>
+                    <td onclick="location.href='{%url 'board:Posting' hot.lectName hot.pk %}'" style="cursor:pointer;">{{hot.title}}</td>
                     <!--게시글 링크-->
-                    <td>좋아요 : </td>
-                    <td onclick="location.href='{%url 'main:home' %}'">{{hot.lectName}}</td><!--과목 게시판 링크-->
+                    <td>좋아요 : {{hot.likeCount}}</td>
+                    <td onclick="location.href='{%url 'board:board' hot.lectName %}'">{{hot.lectName}}</td><!--과목 게시판 링크-->
                 </tr>
                 {% endfor %}
                 {% endif %}

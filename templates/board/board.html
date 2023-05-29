@@ -18,16 +18,13 @@
                         </tr>
                     </thead>
                     <tbody class="text-center"> 
+                    {% for LN in lectList %}
                         <tr>
                             <td>
-                                <a href="#" style="text-decoration: none; color: black;">게시판 1</a>
+                                <a href="/board/post/{{LN.lectName}}" style="text-decoration: none; color: black;">{{LN.lectName}}</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <a href="#" style="text-decoration: none; color: black;">게시판 2</a>
-                            </td>
-                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -41,7 +38,7 @@
                         <br><h4>현재 게시판 이름</h4><br>
                     </div>
                     <div class="col-auto" >
-                        <a href="{% url 'board:NewPost' %}"><button class="btn btn-outline-primary">글쓰기</button></a>
+                        <a href="{% url 'board:NewPost' lectName%}"><button class="btn btn-outline-primary">글쓰기</button></a>
                     </div>
                 </div>
 
@@ -67,15 +64,15 @@
 
                     <!-- 글 목록 부분 -->
                     <tbody>
-                    {% for list in postlist %}
+                    {% for list in postList %}
                         <!-- 게시판(postlist)의 게시글(list)을 하나씩 보여줍니다 -->
                         <!-- {와 %로 이루어진 구문 내부엔 파이썬이 사용됩니다 -->
                         <!-- 게시글 클릭시 세부페이지로 넘어갑니다-->
                         <tr>
-                            <td class="text-center">{{forloop.revcounter}}</td>
-                            <td class="text-start" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; "><a href="{{list.pk}}/" style="color:black; text-decoration: none;">{{list.postname}}</a></td>
-                            <td class="text-center">작성자</td>
-                            <td class="text-center">00-00</td>
+                            <td class="text-center">{{forloop.counter}}</td>
+                            <td class="text-start" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; "><a href="/board/post/{{lectName}}/see/{{list.pk}}/" style="color:black; text-decoration: none;">{{list.title}}</a></td>
+                            <td class="text-center">{{list.author}}</td>
+                            <td class="text-center">{{list.}}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -98,7 +95,6 @@
                             </span>
                         </div>
                     </div>
-
                 </div>
                 <br>
                 <!-- 페이징 -->

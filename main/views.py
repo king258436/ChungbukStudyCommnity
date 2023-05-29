@@ -21,12 +21,15 @@ def index(request):
         PostCheck = 0
     else:
         hotPost = hotPost[0:min(4,len(hotPost))]
+        postinfo = []
+        for i in hotPost:
+            postinfo.append({'lectName' : i.lectName,'likeCount' : i.likeCount(), 'title' : i.title, 'pk' : i.pk })
         PostCheck =1
     context ={
         'lectList' : lectList,
         'loginCheck' : loginCheck,
         'haveLect' : haveLect,
-        'hotPost' : hotPost,
+        'postinfo' : postinfo,
         'PostCheck' : PostCheck,
     }
     return render(request, 'main/index.html', context)

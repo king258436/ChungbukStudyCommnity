@@ -7,7 +7,7 @@ class Lecture(models.Model):
 
     def __str__(self):
         return self.lectName
-
+    
 class LectList(models.Model):
     myLects = models.ManyToManyField(Lecture)
     username = models.CharField(max_length = 150)

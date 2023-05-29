@@ -14,16 +14,13 @@
                     </tr>
                 </thead>
                 <tbody class="text-center"> 
+                {% for LN in lectList %}
                     <tr>
                         <td>
-                            <a href="#" style="text-decoration: none; color: black;">게시판 1</a>
+                            <a href="/board/post/{{LN.lectName}}" style="text-decoration: none; color: black;">{{LN.lectName}}</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <a href="#" style="text-decoration: none; color: black;">게시판 2</a>
-                        </td>
-                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -35,7 +32,7 @@
         <!-- 글쓰기 부분 -->
         <div class="col-lg-9" style="height:1000px";>
             <br><h4>글쓰기 페이지</h4>
-            <form method="POST">
+            <form action = "{% url 'board:NewPost' lectName %}" method="POST">
                 {% csrf_token %}
                 <!-- 제목 입력 부분 -->
                 <label for="postname">제목</label><br>
