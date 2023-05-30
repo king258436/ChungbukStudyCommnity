@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Gothic+Coding:wght@700&display=swap');
     </style>
 </head>
 
@@ -22,7 +24,7 @@
     <!--네비게이션 바 있을자리-->
     <header>
         <section class="text-center">
-            <div class="card bg-dark text-">
+            <div class="card">
                 <img src="{% static 'image/book.jpg' %}" class="card-img" alt="...">
                 <div class="card-img-overlay ">
                     <h1 class=" card-title fw-bold my-5" style="font-size:700%; text-shadow : 3px 3px 3px #ffffff;">CBNU
@@ -41,10 +43,12 @@
                 {% for hot in postinfo %}
                 <tr class="write">
                     <td class="hot">hot</td>
-                    <td onclick="location.href='{%url 'board:Posting' hot.lectName hot.pk %}'" style="cursor:pointer;">{{hot.title}}</td>
+                    <td onclick="location.href='{%url 'board:Posting' hot.lectName hot.pk %}'" style="cursor:pointer;">
+                        {{hot.title}}</td>
                     <!--게시글 링크-->
                     <td>좋아요 : {{hot.likeCount}}</td>
-                    <td onclick="location.href='{%url 'board:board' hot.lectName %}'">{{hot.lectName}}</td><!--과목 게시판 링크-->
+                    <td onclick="location.href='{%url 'board:board' hot.lectName %}'">{{hot.lectName}}</td>
+                    <!--과목 게시판 링크-->
                 </tr>
                 {% endfor %}
                 {% endif %}
@@ -59,20 +63,21 @@
                 {% for lect in lectList %}
                 <tr class="write">
                     <td>{{forloop.counter}}</td>
-                    <td onclick="location.href='{%url 'board:board' lect.lectName %}'" style="cursor:pointer;">{{lect.lectName}}</td>
-                    <!--과목 이름에 해당하는 과목 게시판링크를 달아주세요.--> 
+                    <td onclick="location.href='{%url 'board:board' lect.lectName %}'" style="cursor:pointer;">
+                        {{lect.lectName}}</td>
+                    <!--과목 이름에 해당하는 과목 게시판링크를 달아주세요.-->
                     <td></td>
                 </tr>
                 {% endfor %}
                 {% else %}
                 <tr class="write">
                     <td> 이런! 아직 수강중인 강의가 없어요.. 아래에 링크로 강의를 추가해주세요! </td>
-                    <td href = "{% url 'accounts:ManageSub' %}">강의추가하기</td>
+                    <td href="{% url 'accounts:ManageSub' %}">강의추가하기</td>
                 </tr>
                 {% endif %}
                 {% else %}
                 <tr class="write">
-                    <td> 로그인이 필요해요. 로그인 또는 회원가입을 해주세요! </td>
+                    <td style="border-bottom: none"> 로그인이 필요해요. 로그인 또는 회원가입을 해주세요! </td>
                 </tr>
                 {% endif %}
             </table>
