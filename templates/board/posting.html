@@ -49,7 +49,7 @@
                 <button class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요</button>
                 {% else %}
                 <button class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요 취소</button>
-                {% endif %}
+                {% endif %} 
                 <!-- 우측 하단 버튼들 -->
                 <div id="btn_posting" style="float:right;">
                     <!-- 글 목록으로 돌아가는 버튼 -->
@@ -81,14 +81,24 @@
                 </div>
                 <hr>
             </div>
-                <label for="conmments">댓글</label><br>
+            {% for comm in comments %}
+            <div class="row">
+                <div class="col-2">
+                    작성자
+                </div>
+                <div class="col">
+                    {{comm.content}}
+                </div>
+                <div class="col-2">
+                    작성일자
+                </div>
+            </div>
+            <hr>
+            {% endfor %}
+                <br>
                 <textarea class="form-control" rows="10" id="contents" name="comments"></textarea><br>
                 <input class="btn btn-outline-dark" type="submit" value="댓글쓰기" name = "commentBtn"></a>
-            {% for comm in comments %}
-            <div>
-                {{comm.content}}
-            </div>
-            {% endfor %}
+            
         </form>
         </div>
         <!-- 작성된 게시글 본문 끝 부분 -->
