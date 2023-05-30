@@ -27,9 +27,12 @@ div#wrap div {
 .write td {
     border-bottom: 1px solid #444444;
     padding: 10px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: 900;
 }
 
 .hot {
-    color: red
+    color: red;
+    font-size :large;
 }
 
