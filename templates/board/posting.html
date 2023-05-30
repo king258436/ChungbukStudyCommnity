@@ -41,9 +41,15 @@
                     {% endif %}
                     <hr>
             <!-- 본문 아래 버튼 부분 -->
+        <form action = "{% url 'board:Posting' lectName pk  %}" method = "POST">
+            {% csrf_token %}
             <div style="justify-content: center;">
                 <!-- 댓글(갯수 보여주기?) 좋아요 버튼 -->
-                <button class="btn btn-outline-secondary" type="button">댓글</button> <button class="btn btn-outline-secondary" type="button">좋아요</button>
+                {% if not likeit %}
+                <button class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요</button>
+                {% else %}
+                <button class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요 취소</button>
+                {% endif %}
                 <!-- 우측 하단 버튼들 -->
                 <div id="btn_posting" style="float:right;">
                     <!-- 글 목록으로 돌아가는 버튼 -->
@@ -66,7 +72,7 @@
                             <div class="modal-footer">
                               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
                               <!-- 모달 창에서 삭제하기 버튼 누르면 삭제 페이지로 이동동 -->
-                              <a href="/board/{{post.pk}}/remove"><button type="button" class="btn btn-secondary">삭제하기</button></a>
+                              <button type="sumbit" class="btn btn-secondary" name = "delBtn">삭제하기</button></a>
                             </div>
                           </div>
                         </div>
@@ -75,12 +81,15 @@
                 </div>
                 <hr>
             </div>
-            <form method="comment">
-                {% csrf_token %}
                 <label for="conmments">댓글</label><br>
-                <textarea class="form-control" rows="10" id="contents" name="conmments"></textarea><br>
-                <a href="#"><input class="btn btn-outline-dark" type="button" value="댓글쓰기"></a>
-            </form>
+                <textarea class="form-control" rows="10" id="contents" name="comments"></textarea><br>
+                <input class="btn btn-outline-dark" type="submit" value="댓글쓰기" name = "commentBtn"></a>
+            {% for comm in comments %}
+            <div>
+                {{comm.content}}
+            </div>
+            {% endfor %}
+        </form>
         </div>
         <!-- 작성된 게시글 본문 끝 부분 -->
     </div>

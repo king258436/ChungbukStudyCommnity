@@ -17,12 +17,49 @@ def NewPost(request,lectName): #게시판 렌더링 함수
         postIt.author = postAuthor
         postIt.lectName = postLectName
         postIt.save()
-        return redirect('board:home') # 사용자를 게시판 페이지로 리디렉션
+        return redirect(f'/board/post/{lectName}') # 사용자를 게시판 페이지로 리디렉션
     return render(request, 'board/newpost.html', {'lectName' : lectName, 'lectList' :lectList})
 
 def Posting(request,lectName,pk):
     post = Post.objects.get(pk=pk)
-    return render(request, "board/posting.html", {'lectName' : lectName, 'pk' : pk, 'post' : post})
+    try:
+        likes = post.likes.get(username = request.user.username)
+        if likes.likeIt:
+            likeit = 1
+        else:
+            likeit = 0
+    except:
+        likeit = 0
+    if request.method == "POST":
+        if 'delBtn' in request.POST:
+            post.delete()
+            return redirect(f'/board/post/{lectName}')
+        elif 'likeBtn' in request.POST:
+            try:
+                likes = post.likes.get(username = request.user.username)
+                if likes.likeit:
+                    likes.likeit = 0
+                else:
+                    likes.likeit = 1
+            except:
+                me = like()
+                me.username, me.likeit = request.user.username, 1
+                me.save()
+                post.likes.add(me)
+        elif 'commentBtn' in request.POST:
+            mycomment = Comment()
+            mycomment.content = request.POST.get('comments')
+            mycomment.author = request.user.username
+            mycomment.save()
+            post.comments.add(mycomment)
+    context ={
+        'lectName' : lectName,
+        'pk' : pk, 
+        'post' : post, 
+        'likeit' : likeit,
+        'comments' : post.comments.all()
+    }
+    return render(request, "board/posting.html", context)
 
 # 로그인한 사용자에게만 게시판 표시하는 함수
 def index(request):
