@@ -1,38 +1,56 @@
 {% extends 'Base.html' %}
 {% block content %}
 <div class="container">
-    <div class="row mt-5">
-        <!-- 좌측 사이드 카테고리 시작 부분 -->
-        <div class="col-lg-2" id="board_list">
-            <br><h5>게시판</h5>
-            <hr>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">게시판 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">게시판 2</a>
-                </li>
-              
-            </ul>
-        </div>
-        <!-- 좌측 사이드 카테고리 끝 부분 -->
+    <div class="row">
+       <!-- 좌측 사이드 카테고리 시작 부분 -->
+       <div class="col-lg-2">
+        <br><h4 style="color: white;">어캐찾앗누?</h4><br>
+        <table class="table" style="table-layout:fixed">
+            <thead>
+                <tr class="text-center table-dark">
+                    <th>                            
+                        게시판
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="text-center"> 
+            {% for LN in lectList %}
+                <tr>
+                    <td>
+                        <a href="/board/post/{{LN.lectName}}" style="text-decoration: none; color: black;">{{LN.lectName}}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- 좌측 사이드 카테고리 끝 부분 -->
 
         <!-- 여백 부분 -->
         <div class="col-auto"></div>
 
         <!-- 작성된 게시글 본문 시작 -->
-        <div class="col-lg-9" style="height:1000px">
-                    <h1>CBNU Study</h1>
+        <div class="col-lg-9" style="height:1000px; word-break: break-all;">
+
+                    <br><h4>현재 게시판 이름</h4>
                     <!-- 글 제목 -->
                     <hr>
-                        <p style="word-break: break-all;">{{post.title}}</p>
+                    <div class="row">
+                        <div class="col">
+                            &nbsp;{{post.title}}
+                        </div>
+                        <div class="col-2" style="text-align: center;">
+                            00-00-00 00:00
+                        </div>
+                    </div>
                     <hr>
                     <!-- 작성자 이름 -->
-                    {{post.author}}
+                    <div class="col">
+                        &nbsp;{{post.author}}
+                    </div>
                     <hr>
                     <!-- 글 내용 -->
-                    <div id="contents" style="min-height:500px"><p style="word-break: break-all;">{{post.content}}</p></div>
+                    <div id="contents" style="min-height:400px"><p>{{post.content}}</p></div>
 
                     <!-- 이미지 보여주기 -->
                     {% if post.mainphoto %}
@@ -45,8 +63,9 @@
             {% csrf_token %}
             <div style="justify-content: center;">
                 <!-- 댓글(갯수 보여주기?) 좋아요 버튼 -->
+                <button class="btn btn-outline-secondary">댓글 #(갯수)</button>
                 {% if not likeit %}
-                <button class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요</button>
+                <button id="btn" class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요</button>
                 {% else %}
                 <button class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요 취소</button>
                 {% endif %} 
@@ -96,14 +115,16 @@
             <hr>
             {% endfor %}
                 <br>
-                <textarea class="form-control" rows="10" id="contents" name="comments"></textarea><br>
+                <textarea class="form-control" rows="4" id="contents" name="comments"></textarea><br>
                 <input class="btn btn-outline-dark" type="submit" value="댓글쓰기" name = "commentBtn"></a>
             
         </form>
+        <br><br>
         </div>
         <!-- 작성된 게시글 본문 끝 부분 -->
     </div>
 </div>
+
         
 
 {% endblock %}

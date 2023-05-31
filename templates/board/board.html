@@ -1,122 +1,157 @@
-{% extends 'Base.html' %}
-{% block content %}
-
+{% extends 'Base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/board.css' %}" />
 <title>게시판</title>
-<link rel="stylesheet" href="">
-    <!-- body -->
-    <div class="container">
-        <div class="row">
-            <!-- 좌측 사이드 카테고리 시작 부분 -->
-            <div class="col-lg-2">
-                <br><h4 style="color: white;">어캐찾앗누?</h4><br>
-                <table class="table" style="table-layout:fixed;">
-                    <thead>
-                        <tr class="text-center table-dark">
-                            <th>                            
-                                게시판
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center"> 
-                    {% for LN in lectList %}
-                        <tr>
-                            <td>
-                                <a href="/board/post/{{LN.lectName}}" style="text-decoration: none; color: black;">{{LN.lectName}}</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <!-- 좌측 사이드 카테고리 끝 부분 -->
-            <!-- 여백 -->
-            <div class="col-auto"></div>
-            <!-- 우측 본문 시작 부분 -->
-            <div class="col-lg-9" style="height: 1000px;"> 
-                <div class="row">
-                    <div class="col-md">
-                        <br><h4>현재 게시판 이름</h4><br>
-                    </div>
-                    <div class="col-auto" >
-                        <a href="{% url 'board:NewPost' lectName%}"><button class="btn btn-outline-primary">글쓰기</button></a>
-                    </div>
-                </div>
-
-                <!-- 글 목록 시작 부분 -->
-                <table class="table"  style="table-layout: fixed;">
-                    <!-- 테이블 너비 비율 조정해놓은 부분 -->
-                    <colgroup>
-                        <col width="10%">
-                        <col max-width="60%">
-                        <col width="15%">
-                        <col width="15%">
-                    </colgroup>
-
-                    <!-- 글 목록 상단 바 -->
-                    <thead>
-                        <tr class="text-center table-dark">
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>작성일시</th>
-                        </tr>
-                    </thead>
-
-                    <!-- 글 목록 부분 -->
-                    <tbody>
-                    {% for list in postList %}
-                        <!-- 게시판(postlist)의 게시글(list)을 하나씩 보여줍니다 -->
-                        <!-- {와 %로 이루어진 구문 내부엔 파이썬이 사용됩니다 -->
-                        <!-- 게시글 클릭시 세부페이지로 넘어갑니다-->
-                        <tr>
-                            <td class="text-center">{{forloop.counter}}</td>
-                            <td class="text-start" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; "><a href="/board/post/{{lectName}}/see/{{list.pk}}/" style="color:black; text-decoration: none;">{{list.title}}</a></td>
-                            <td class="text-center">{{list.author}}</td>
-                            <td class="text-center">{{list.}}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <!-- 글 목록 끝 부분 -->
-
-                <!-- 글쓰기 버튼 및 검색창 부분 -->
-                <div class="row 2">
-                    <div class="col-7">
-                        <div class="input-group">
-                            <span class="input-group-select" id="select_btn">
-                                <select class="form-select" name="search_option" id="search_option">
-                                    <option value="title">제목</option>
-                                    <option value="author">작성자</option>
-                                </select>
-                            </span>
-                            <input type="text" name="search_board" id="search_board" class="form-control" value="">
-                            <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="button" id="search_board">검색</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <!-- 페이징 -->
-                <nav aria-label="Page naviagation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </ul>
-                </nav>
-            </div>
-
-            <!-- 우측 본문 끝 부분 -->
-        </div>
+<!-- body -->
+<div class="container">
+  <div class="row">
+    <!-- 좌측 사이드 카테고리 시작 부분 -->
+    <div class="col-lg-2">
+      <br />
+      <h4 style="color: white">어캐찾앗누?</h4>
+      <br />
+      <table class="table" style="table-layout: fixed">
+        <thead>
+          <tr class="text-center table-dark">
+            <th>게시판</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          {% for LN in lectList %}
+          <tr>
+            <td>
+              <a
+                href="/board/post/{{LN.lectName}}"
+                style="text-decoration: none; color: black"
+                >{{LN.lectName}}</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+    <!-- 좌측 사이드 카테고리 끝 부분 -->
+    <!-- 여백 -->
+    <div class="col-auto"></div>
+    <!-- 우측 본문 시작 부분 -->
+        <div class="col-lg-9">
+            <br />
+            <h4>현재 게시판 이름</h4>
+            <div class="btns">
+              <button class="btn btn-outline-primary">전체글</button>
+              <button class="btn btn-outline-dark">질문글</button>
+              <button class="btn btn-outline-secondary">정보글</button>
+              <a href="{% url 'board:NewPost' lectName%}"
+                ><button class="btn btn-outline-primary" id="write">글쓰기</button></a
+              >
+            </div>
+      
+            <!-- 글 목록 시작 부분 -->
+            <div style="min-height: 450px;">
+            <table class="table" style="table-layout: fixed;">
+              <!-- 테이블 너비 비율 조정해놓은 부분 -->
+              <colgroup>
+                <col width="10%" />
+                <col max-width="60%" />
+                <col width="15%" />
+                <col width="15%" />
+              </colgroup>
+      
+              <!-- 글 목록 상단 바 -->
+
+              <thead>
+                <tr class="text-center table-dark">
+                  <th>종류</th>
+                  <th>제목</th>
+                  <th>작성자</th>
+                  <th>작성일시</th>
+                </tr>
+              </thead>
+      
+              <!-- 글 목록 부분 -->
+              
+                <tbody>
+                    {% for list in postList %}
+                    <!-- 게시판(postlist)의 게시글(list)을 하나씩 보여줍니다 -->
+                    <!-- {와 %로 이루어진 구문 내부엔 파이썬이 사용됩니다 -->
+                    <!-- 게시글 클릭시 세부페이지로 넘어갑니다-->
+                    <tr>
+                      <td class="text-center">태그이름</td>
+                      <td
+                        class="text-start"
+                        style="
+                          overflow: hidden;
+                          white-space: nowrap;
+                          text-overflow: ellipsis;
+                        "
+                      >
+                        <a
+                          href="/board/post/{{lectName}}/see/{{list.pk}}/"
+                          style="color: black; text-decoration: none"
+                          >{{list.title}}</a
+                        >
+                      </td>
+                      <td class="text-center">{{list.author}}</td>
+                      <td class="text-center">{{list.}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+
+
+            </table>
+        </div>
+            <!-- 글 목록 끝 부분 -->
+   
+
+      <!-- 글쓰기 버튼 및 검색창 부분 -->
+      <div class="row-2">
+        <div class="col-7 m-auto">
+          <div class="input-group">
+            <span class="input-group-select" id="select_btn">
+              <select
+                class="form-select"
+                name="search_option"
+                id="search_option"
+              >
+                <option value="title">제목</option>
+                <option value="author">작성자</option>
+              </select>
+            </span>
+            <input
+              type="text"
+              name="search_board"
+              id="search_board"
+              class="form-control"
+              value=""
+            />
+            <span class="input-group-btn">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="search_board"
+              >
+                검색
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <br />
+      <!-- 페이징 -->
+      <nav aria-label="Page naviagation example" id="page">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- 우측 본문 끝 부분 -->
+  </div>
+</div>
 {% endblock %}

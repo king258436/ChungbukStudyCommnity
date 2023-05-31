@@ -1,5 +1,18 @@
 {% extends 'Base.html' %}
 {% block content %}
+
+<style>
+.btn1{
+    border : none;
+    outline: none;
+    height: 50px;
+    width : 100%;
+    background-color: #7489F0;
+    color: black;
+    border-radius: 4px;
+    font-weight: bold;
+}
+</style>
 <!-- 마이페이지 본문 -->
 <div class="container">
     <div class="row">
@@ -36,7 +49,8 @@
                     <label for="new_user_pw_check" class="form-label">변경할 비밀번호(확인)</label> 
                 </div>
                 <!-- 변경 버튼 -->
-                <br><p><input type="submit" class="btn1" value="변경"></p>
+                <input type="submit" class="btn1" value="변경">
+                <br>
                 {% if error %}
                 <div class="alert alert-danger">
                     <div>
