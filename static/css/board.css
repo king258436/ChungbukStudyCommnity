@@ -18,3 +18,20 @@ body{
 #select_btn{
     border-color: beige;
 }
+#write{
+    margin-bottom: 5px;
+    float:right;
+}
+#page{
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 테이블 행의 높이 설정 */
+.table tbody tr {
+    max-height: 40.67px;
+  }
+
+  /* 테이블 전체 높이 설정 */
+  .table-wrapper {
+    min-height: 450px;
+  }
