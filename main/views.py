@@ -4,6 +4,7 @@ from board.models import *
 
 def index(request):
     lectList = []
+    postinfo = []
     if request.user.is_authenticated:#로그인 됐음
         loginCheck = 1
         lectList = LectList.objects.get(username = request.user.username)

@@ -8,6 +8,8 @@ def SignUp(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
+            myLect = LectList(username = request.POST.get('username'))
+            myLect.save()
             return render(request, 'main/index.html')
     else:
         form = UserForm()

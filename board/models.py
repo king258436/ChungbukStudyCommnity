@@ -10,7 +10,7 @@ class Comment(models.Model):
     content = models.TextField()
     pubDate = models.DateTimeField(default=timezone.now)
     author = models.CharField(max_length=150)
-    likes = models.ManyToManyField(User)
+    likes = models.ManyToManyField(like)
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
