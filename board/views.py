@@ -78,6 +78,4 @@ def lectBoard(request,lectName):
     return render(request, "board/board.html", {'lectList' : lectList,'postList':postList, 'lectName' : lectName})
 
 def test(request):
-    if not request.user.is_authenticated:
-        return redirect("main:home")
-    return render(request, "board/study.html")
+    return render(request, "board/eval.html")
