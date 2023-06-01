@@ -1,80 +1,130 @@
 {% extends 'Base.html' %}
 {% block content %}
 <style>
-    #select_subject{
-        overflow:auto; 
+    #select_subject {
+        overflow: auto;
         height: 300px;
     }
-    .btn1{
-    border : none;
-    outline: none;
-    height: 50px;
-    width : 100%;
-    background-color: #7489F0;
-    color: black;
-    border-radius: 4px;
-    font-weight: bold;
-}
+
+    .btn1 {
+        border: none;
+        outline: none;
+        height: 50px;
+        width: 100%;
+        background-color: #7489F0;
+        color: black;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .list-group li {
+        margin-bottom: 5px;
+        border-radius: 10px;
+        border-color: black;
+    }
 </style>
-    <!-- 마이페이지 본문 부분 -->
-    <div class=container>
-        <div class="row">
-            
-                <h5>강의 관리</h5>
-                <hr>
+<!-- 마이페이지 본문 부분 -->
+<div class=container>
+    <div class="row">
+        <!-- 좌측 사이드 탭 시작 -->
+        <div class="col-lg-3 pt-5">
+            <ol class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a href="#">과목</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a href="#">과목</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a href="#">과목</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a href="#">과목</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <a href="#">과목</a>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
+                </li>
+            </ol>
+        </div>
+        <!-- 좌측 사이드 탭 끝 -->
+        <div class="col-lg-8 pt-5">
+            <h3 style="text-align: center; padding: 5px;">강의 평가</h3>
+            <p style="text-align: center">비방이나, 욕설 자제부탁 드립니다.</p>
             <!-- 강의 추가하는 부분 시작 -->
-            <form  method = "POST">
-            {% csrf_token %}
+            <form method="POST">
+                {% csrf_token %}
                 <div class="form-floating">
                     <div class="row">
-                        <div class="input-group">
-                            <input type="text" name="search_subject" id="search_subject" class="form-control" value="">
+                        <div class="input-group" style="padding-bottom: 10px;"">
+                        <input type=" text" name="search_subject" id="search_subject" class="form-control" value="">
                             <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="submit" id="search_btn", name = "search_btn">검색</button>
+                                <button class="btn btn-outline-secondary" type="submit" id="search_btn" ,
+                                    name="search_btn">검색</button>
                             </span>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 검색 옵션 -->
                 <div class="form-floating form-control">
-                    <table style="justify-content: center;">
-                        <td style="width:18%">
-                           &nbsp;
-                        </td>
-                        <td>
-                            <input class="form-check-input" type="radio" value="" name="cond" id="subname" checked>
-                            <label class="form-check-label" for="subname">강의명&nbsp;</label>
-                        </td>
-                        <td>
-                            <input class="form-check-input" type="radio" value="" name="cond" id="profname">
-                            <label class="form-check-label" for="profname">교수명</label>
-                        </td>
-                    </table>
+
                     <!-- 추가할 강의 목록 -->
-                    <div class="form-floating" id="select_subject">
-                        <table class="table" id="sublist">
-                            <tr style="justify-content: center;">
-                                <td>
-                                    <input class="form-check-input" type="checkbox" value="", name = "subject{{forloop.counter0}}" , id="subject{{forloop.counter0}}"> 
-                                </td>
-                                <td style="width:60%;">
-                                    <label class="form-check-label" for="subject{{forloop.counter0}}">1</label>
-                                </td>
-                                <td style="width:40%; text-align: center;">
-                                    <label class="form-check-label" for="subject{{forloop.counter0}}">1</label>
-                                </td>
-                            </tr> 
-                        </table>
-                    </div>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">제목</div>
+                                교수님이 점수를 잘 안주십니다
+                            </div>
+                            <span class="badge bg-primary rounded-pill">김00 교수</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">제목</div>
+                                너무좋아요 사랑해요 고00 교수님!
+                            </div>
+                            <span class="badge bg-primary rounded-pill">고00 교수</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">제목</div>
+                                정말 유익한 강의였습니다. 감사합니다.
+                            </div>
+                            <span class="badge bg-primary rounded-pill">임00 교수</span>
+                        </li>
+                    </ol>
                 </div>
                 <br>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">제목</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
                 <!-- 추가 버튼 -->
-                <div class="add_btn">
-                    <button class="btn1" type="submit",  name = "add_btn", id = "add_btn">추가하기</button>
+                <div class="add_btn" style="text-align: center; margin-bottom: 30px;">
+                    <button class="btn1" type="submit" , name="add_btn" , id="add_btn" , style="width : 50%">평가
+                        작성</button>
                 </div>
             </form>
             <!-- 강의 추가하는 부분 끝 -->
-            </div>
         </div>
+    </div>
+</div>
 {% endblock %}
