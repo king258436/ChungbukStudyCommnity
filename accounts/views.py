@@ -23,6 +23,15 @@ def Home(request):
 def MyPage(request):
     if not request.user.is_authenticated: #유효성검사
         return redirect("main:home")
+    if request.method == 'POST':
+        user = LectList.objects.get(username = request.user.username)
+        myLect = user.myLects.all()
+        for i in range(0,len(myLect)):
+            checkbox = request.POST.get(f'sub{i}')
+            if checkbox == '':
+                user.myLects.remove(myLect[i])
+        user.save()
+
     error = 0
     userInfo = request.user
     myLect = []
