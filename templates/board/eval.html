@@ -17,22 +17,51 @@
         font-weight: bold;
     }
 
-    .list-group li {
-        margin-bottom: 5px;
-        border-radius: 10px;
-        border-color: black;
+    .list-group .list-group-item {
+        margin: 10px;
+        border: none;
+        border-bottom: 1px solid gray;
+    }
+
+    .list-group .list-group-item {
+        margin: 10px;
+        border: none;
+        border-bottom: 1px solid gray;
+    }
+
+    .list-group .list-group-item1 {
+        margin: 5px;
+    }
+
+    .list-group-item:hover {
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    .rating span {
+        font-size: 30px;
+        cursor: pointer;
+        color: yellow;
+        text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+        font-weight: 100;
+    }
+
+    .rating span:hover,
+    .rating span:hover {
+        color: orange;
     }
 </style>
 <!-- 마이페이지 본문 부분 -->
 <div class=container>
     <div class="row">
         <!-- 좌측 사이드 탭 시작 -->
-        <div class="col-lg-3 pt-5">
+        <div class="col-lg-3 pt-5" style="border-right: 1px solid none; margin-right : 40px">
             <ol class="list-group">
                 {% if login %}
                 {% if lectCount %}
                 {% for lect in myLects %}
-                <li class="list-group-item d-flex justify-content-between align-items-start">
+                <li class="list-group-item1 d-flex justify-content-between align-items-start"
+                    style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px">
                     <div class="ms-2 me-auto">
                         <a href="/board/eval/lect/{{lect.lectName}}">{{lect.lectName}}</a>
                     </div>
@@ -60,11 +89,11 @@
                 {% csrf_token %}
                 <div class="form-floating">
                     <div class="row">
-                        <div class="input-group" style="padding-bottom: 10px;"">
-                        <input type=" text" name="search_subject" id="search_subject" class="form-control" value="">
+                        <div class="input-group" style="padding-bottom: 10px">
+                            <input type=" text" name="search_subject" id="search_subject" class="form-control">
                             <span class="input-group-btn">
                                 <button class="btn btn-outline-secondary" type="submit" id="search_btn" ,
-                                    name="search_btn">검색</button>
+                                    name="search_btn" style="margin-left : 15px">검색</button>
                             </span>
                         </div>
                     </div>
@@ -78,29 +107,52 @@
                                 <div class="fw-bold">제목</div>
                                 교수님이 점수를 잘 안주십니다
                             </div>
-                            <span class="badge bg-primary rounded-pill">김00 교수</span>
+                            <span class="badge bg-info rounded-pill">김00 교수</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">제목</div>
                                 너무좋아요 사랑해요 고00 교수님!
                             </div>
-                            <span class="badge bg-primary rounded-pill">고00 교수</span>
+                            <span class="badge bg-info rounded-pill">고00 교수</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">제목</div>
                                 정말 유익한 강의였습니다. 감사합니다.
                             </div>
-                            <span class="badge bg-primary rounded-pill">임00 교수</span>
+                            <span class="badge bg-info rounded-pill">임00 교수</span>
                         </li>
                     </ol>
                 </div>
                 <br>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">제목</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1">
+                <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px;">
+                    <option selected>option</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <div class="rating">
+                    <span onclick="setRating(1)">☆</span>
+                    <span onclick="setRating(2)">☆</span>
+                    <span onclick="setRating(3)">☆</span>
+                    <span onclick="setRating(4)">☆</span>
+                    <span onclick="setRating(5)">☆</span>
                 </div>
+
+                <script>
+                    function setRating(rating) {
+                        var stars = document.getElementsByClassName("rating")[0].getElementsByTagName("span");
+
+                        for (var i = 0; i < stars.length; i++) {
+                            if (i < rating) {
+                                stars[i].innerHTML = "★";
+                            } else {
+                                stars[i].innerHTML = "☆";
+                            }
+                        }
+                    }
+                </script>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">내용</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
