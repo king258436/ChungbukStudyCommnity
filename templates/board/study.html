@@ -1,6 +1,107 @@
 {% extends 'Base.html' %}
 {% block content %}
 {% load static %}
+<style>
+.link_style{
+    text-decoration: none;
+    color: inherit;
+}
+.link_style:hover{
+    color: inherit;
+}
+.std_btn{
+    height: 50px;
+    color:gray; 
+    font-size: 18px;
+    font-weight: bold;
 
+    
+}
+</style>
 
+<body>
+    <div class="container-fluid" style="background-color: rgb(192, 192, 192);">
+        <div class="container">
+            <div class="form-row" style="height: 50px; ">
+                <table>
+                    <tr>
+                        <td class="std_btn" onClick="location.href='{% url 'board:newstudy' %}'" style="cursor: pointer;">+ 스터디 만들기</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-2">
+        <div class="row">
+            <a href="{% url 'board:StdPost' %}" class="link_style">
+                <table class="table justify-content-center">
+                    <tr>
+                        <td>
+                            <div class="form-row">
+                                <button class="btn btn-primary" disabled>모집중</button> 스터디 이름
+                            </div>
+                            <div class="form-row mt-2">
+                                <h5>제목</h5>
+                            </div>
+                            <div class="form-row">
+                                3줄 요약 내용
+                            </div>
+                            <div class="form-row mt-3">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col" style="display:flex; align-items: center;"><img style="height: 20px; display: inline-block;"  src="{% static 'image/person_icon.png' %}" alt="Profile">&nbsp;1/6</div>
+                                        <div class="col-auto">작성날짜</div> 
+                                        <div class="col-auto">작성자명</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+            <!-- 모집 완료 예시 -->
+            <a href="{% url 'board:StdPost' %}" class="link_style">
+                <table class="table justify-content-center">
+                    <tr>
+                        <td>
+                            <div class="form-row">
+                                <button class="btn btn-secondary" disabled>모집완료</button> 자꾸자구
+                            </div>
+                            <div class="form-row mt-2">
+                                <h5>자료구조 스터디 하실 분 모집합니다~</h5>
+                            </div>
+                            <div class="form-row">
+                                이의종 교수님 자료구조 수업 스터디 하실 분 구합니다. <br>
+                                고수들 환영합니다~ <br>
+                                버스태워주세염
+                            </div>
+                            <div class="form-row mt-3">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col"><img style="height: 20px; display: inline-block;"  src="{% static 'image/person_icon.png' %}" alt="Profile">&nbsp;6/6</div>
+                                        <div class="col-auto">23-06-03</div> 
+                                        <div class="col-auto">yeonnim82</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+        <nav aria-label="Page naviagation example" id="page">
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+    </div>
+</body>
 {% endblock %}

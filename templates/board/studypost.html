@@ -1,0 +1,115 @@
+{% extends 'Base.html' %}
+{% block content %}
+{% load static %}
+<style>
+    .link_style{
+        text-decoration: none;
+        color: inherit;
+    }
+    .link_style:hover{
+        color: inherit;
+    }
+    .std_btn{
+        height: 50px;
+        color:gray; 
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .std_member{
+        list-style-type: none;
+        list-style: none;
+    }
+    #owneronly{
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+    #alluser{
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+    #left_side{
+        border-right: 1px solid #DEE2E6;
+
+    }
+    </style>
+<body>
+    <div class="container-fluid" style="background-color: rgb(192, 192, 192);">
+        <div class="container">
+            <div class="form-row" style="height: 50px; ">
+                <table>
+                    <tr>
+                        <td class="std_btn" onClick="location.href='{% url 'board:newstudy' %}'" style="cursor: pointer;">+ 스터디 만들기</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-2">
+        <div class="row">
+            <table class="table justify-content-center">
+                <tr>
+                    <td>
+                        <div class="form-row">
+                            <button class="btn btn-primary" disabled>모집중</button>&nbsp;스터디 이름
+                        </div>
+                        <div class="form-row mt-2">
+                            <h5>제목</h5>
+                        </div>
+                        <div class="form-row mt-3">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col"><img style="height: 20px; display: inline-block;"  src="{% static 'image/person_icon.png' %}" alt="Profile">&nbsp;최대인원 #명</div>
+                                    <div class="col-auto" name="gotolist" id="alluser"><button class="btn btn-outline-secondary">목록</button></div> 
+                                    <div class="col-auto" name="del_btn" id="owneronly"><button class="btn btn-outline-primary">삭제</button></div>
+                                    <div class="col-auto" name="change_stat" id="owneronly"><button class="btn btn-outline-primary">상태변경</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+
+            <div class="col-2" id="left_side">
+                <div class="row" id=>
+                    <ul class="std_member">
+                        <p>멤버 #명</p>   
+                        <li class="my-2">
+                            <div><img style="height: 20px; display: inline-block;"  src="{% static 'image/person_icon.png' %}" alt="Profile">&nbsp;yeonshin82</div>
+                        </li>
+                        <li class="my-2">
+                            <div><img style="height: 20px; display: inline-block;"  src="{% static 'image/person_icon.png' %}" alt="Profile">&nbsp;atopi0827</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="row">
+                    <h5>스터디 소개</h5>
+                </div>
+                <div class="row mt-3" style="min-height: 400px;">
+                    <p>
+                        내용
+                    </p>   
+                </div>
+                <div class="row" style="float: right;">
+                    <div class="col-auto" >
+                        작성날짜
+                    </div>
+                    <div class="col-auto">
+                        작성자
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+    </div>
+
+
+
+</body>
+{% endblock %}

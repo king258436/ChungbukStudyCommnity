@@ -79,3 +79,12 @@ def lectBoard(request,lectName):
 
 def test(request):
     return render(request, "board/eval.html")
+
+def test2(request):
+    return render(request, "board/study.html")
+
+def NewStudy(request):
+    return render(request, "board/newstudy.html")
+
+def StdPost(request):
+    return render(request, "board/studypost.html")
