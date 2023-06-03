@@ -1,0 +1,96 @@
+{% extends 'Base.html' %} {% block content %} {% load static %}
+<!-- 스터디 모집 글 작성 페이지 -->
+<body>
+  <div class="container">
+    <!-- 폼 시작 -->
+    <form action="#" method="POST">
+      {% csrf_token %}
+      <!-- 스터디 이름 입력창 -->
+      <div class="form-row my-3">
+        <div class="col-6">
+          <label for="std_name">스터디 이름</label>
+          <input
+            type="text"
+            class="form-control"
+            id="std_name"
+            maxlength="15"
+            placeholder="스터디 이름을 입력해 주세요"
+            onfocus="placeholder=''"
+            onblur="placeholder='여러분의 스터디 이름을 입력해 주세요'"
+            required
+          />
+        </div>
+      </div>
+      <!-- 스터디 제목 입력창 -->
+      <div class="form-row my-3">
+        <div class="col">
+          <label for="std_title">제목</label>
+          <input
+            type="text"
+            class="form-control"
+            id="std_title"
+            placeholder="스터디를 소개할 제목을 입력해 주세요"
+            onfocus="placeholder=''"
+            onblur="placeholder='여러분의 스터디를 소개할 제목을 입력해 주세요'"
+            required
+          />
+        </div>
+      </div>
+      <!-- 스터디 내용 요약 입력창 스터디 글 목록에서 출력해줄 내용 -->
+      <div class="form-row my-3">
+        <div class="col">
+          <label for="short_std_content">스터디 내용 3줄 요약</label>
+          <textarea
+            class="form-control"
+            ame="short_std_content"
+            id="short_std_content"
+            cols="30"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <!-- 구체적인 스터디 내용(이메일, 연락처, 스터디 계획, 인원수, 일정, 목표 등등) -->
+      <div class="form-row my-3">
+        <div class="col">
+          <label for="std_content">스터디 내용</label>
+          <textarea
+            class="form-control"
+            name="std_content"
+            id="std_content"
+            cols="30"
+            rows="11"
+            required
+          >
+스터디 내용을 가능한 구체적으로 작성해주세요
+
+Example)
+
+• 스터디 목표 :
+
+• 이메일 : 
+
+• 연락처 :</textarea
+          >
+          <!-- 템플릿 텍스트로 보여줄거 -->
+        </div>
+      </div>
+      <!-- 모집 최대 인원 수 입력창 -->
+      <div class="form-row my-3">
+        <div class="col-2">
+          인원
+          <input type="number" class="form-control" value="2" />
+        </div>
+      </div>
+      <!-- 취소 버튼(이상하게 작동X)이랑 등록 버튼(미구현) -->
+      <div class="form-row my-3">
+        <div class="col-4">
+          <a href="{% url 'board:test2' %}"
+            ><button class="btn btn-outline-secondary">취소</button></a
+          >
+          <button class="btn btn-primary" type="submit">등록</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+{% endblock %}
