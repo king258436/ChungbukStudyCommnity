@@ -14,7 +14,6 @@ def SignUp(request):
     else:
         form = UserForm()
     return render(request, 'accounts/SignUp.html', {'form': form})
-
 #마이 페이지에서 사용할 함수 
 
 def Home(request):
@@ -28,10 +27,9 @@ def MyPage(request):
         myLect = user.myLects.all()
         for i in range(0,len(myLect)):
             checkbox = request.POST.get(f'sub{i}')
-            if checkbox == '':
+            if checkbox is not None:
                 user.myLects.remove(myLect[i])
         user.save()
-
     error = 0
     userInfo = request.user
     myLect = []
@@ -104,9 +102,7 @@ def ManageSub(request):
                     user.myLects.add(realLectList[i])
             user.save()
             return redirect('accounts:MyPage')
-        
     #추가하기 눌렀을 때 작동하는 파트 
-    
     return render(request, 'accounts/mypage/ManageSub.html', {'lectList' : realLectList})
 
 def Forget(request):

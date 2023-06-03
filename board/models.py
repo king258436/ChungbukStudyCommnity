@@ -1,10 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User 
 from django.utils import timezone
+from accounts.models import *
 
 class like(models.Model):
     username = models.CharField(max_length=150)
     likeIt = models.BooleanField(default=0)
+
+class evalLect(models.Model):
+    lectName = models.CharField(max_length= 150)
+    professor = models.CharField(max_length = 150)
+    content = models.TextField()
+
+    def __str__(self):
+        return f"{self.lectName}, {self.professor}"
 
 class Comment(models.Model):
     content = models.TextField()
@@ -13,6 +22,7 @@ class Comment(models.Model):
     likes = models.ManyToManyField(like)
 
 class Post(models.Model):
+    tag = models.CharField(max_length=10)
     title = models.CharField(max_length=30)
     content = models.TextField()
     pubDate = models.DateTimeField(default=timezone.now)

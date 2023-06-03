@@ -29,36 +29,26 @@
         <!-- 좌측 사이드 탭 시작 -->
         <div class="col-lg-3 pt-5">
             <ol class="list-group">
+                {% if login %}
+                {% if lectCount %}
+                {% for lect in myLects %}
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <a href="#">과목</a>
+                        <a href="/board/eval/lect/{{lect.lectName}}">{{lect.lectName}}</a>
                     </div>
-                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
+                    <span class="badge bg-primary rounded-pill">평가 수 :</span>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <a href="#">과목</a>
-                    </div>
-                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <a href="#">과목</a>
-                    </div>
-                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <a href="#">과목</a>
-                    </div>
-                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <a href="#">과목</a>
-                    </div>
-                    <span class="badge bg-primary rounded-pill">댓글 수 : 14</span>
-                </li>
+                {% endfor %}
+                {% else %}
+                <div class="ms-2 me-auto">
+                    <a href="{% url 'accounts:ManageSub' %}">아직 수강중인 강의가 없네요.</a>
+                </div>
+                {% endif %}
+                {% else %}
+                <div class="ms-2 me-auto">
+                    <a href="{% url 'accounts:Login' %}">강의 목록을 보려면 로그인을 해주세요.</a>
+                </div>
+                {% endif %}
             </ol>
         </div>
         <!-- 좌측 사이드 탭 끝 -->
@@ -79,10 +69,8 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- 검색 옵션 -->
                 <div class="form-floating form-control">
-
                     <!-- 추가할 강의 목록 -->
                     <ol class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">

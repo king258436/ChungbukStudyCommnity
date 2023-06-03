@@ -77,5 +77,22 @@ def lectBoard(request,lectName):
     postList = Post.objects.filter(lectName = lectName)
     return render(request, "board/board.html", {'lectList' : lectList,'postList':postList, 'lectName' : lectName})
 
-def test(request):
-    return render(request, "board/eval.html")
+def evalMain(request):
+    myLects = []
+    if not request.user.is_authenticated:
+        login = 0
+    else:
+        myLects = LectList.objects.get(username = request.user.username).myLects.all()
+        login = 1
+    eval = evalLect.objects.all()
+    lectCount = len(myLects)
+    context = {
+        'myLects': myLects,
+        'lectCount': lectCount,
+        'login' : login,
+        'evals' : eval,
+    }
+    return render(request, 'board/eval.html', context)
+
+def evalBoard(request,lectName):
+    return render(request, 'board/evalPost.html', {'lectName', lectName})

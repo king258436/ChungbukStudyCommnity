@@ -7,8 +7,14 @@ def index(request):
     postinfo = []
     if request.user.is_authenticated:#로그인 됐음
         loginCheck = 1
-        lectList = LectList.objects.get(username = request.user.username)
-        lectList = lectList.myLects.all()
+        try:
+            lectList = LectList.objects.get(username = request.user.username)
+            lectList = lectList.myLects.all()
+        except:
+            lectList = LectList()
+            lectList.username = request.user.username
+            lectList.save()
+    
         if len(lectList) > 0:
             haveLect = 1
         else:
