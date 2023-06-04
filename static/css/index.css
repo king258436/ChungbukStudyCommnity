@@ -24,8 +24,8 @@ div#wrap div {
     padding: 15px;
 }
 
-.write td {
-    border-bottom: 1px solid #444444;
+.write {
+    border-bottom : 1px solid gray;
     padding: 10px;
     font-family: 'Nanum Gothic Coding', monospace;
     font-weight: 900;
@@ -36,3 +36,21 @@ div#wrap div {
     font-size :large;
 }
 
+.write:last-child {
+    border-bottom: none;
+    padding: 10px;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-weight: 900;
+}
+
+body{
+    background-color: gray;
+}
+
+.card-img {
+    opacity: 0.5;
+}
+
+.card{
+    background-color: black;
+}
