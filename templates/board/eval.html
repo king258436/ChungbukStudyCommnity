@@ -23,14 +23,8 @@
         border-bottom: 1px solid gray;
     }
 
-    .list-group .list-group-item {
-        margin: 10px;
-        border: none;
-        border-bottom: 1px solid gray;
-    }
-
     .list-group .list-group-item1 {
-        margin: 5px;
+        background-color: white;
     }
 
     .list-group-item:hover {
@@ -49,6 +43,21 @@
     .rating span:hover,
     .rating span:hover {
         color: orange;
+    }
+
+    a:link {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: gray;
+        text-decoration: none;
     }
 </style>
 <!-- 마이페이지 본문 부분 -->
@@ -159,7 +168,8 @@
                 </div>
                 <!-- 추가 버튼 -->
                 <div class="add_btn" style="text-align: center; margin-bottom: 30px;">
-                    <button class="btn1" type="submit" , name="add_btn" , id="add_btn" , style="width : 50%">평가
+                    <button class="btn1" type="submit" , name="add_btn" , id="add_btn" ,
+                        style="width : 50%; color : white; text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;">평가
                         작성</button>
                 </div>
             </form>
