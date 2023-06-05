@@ -11,6 +11,8 @@ class evalLect(models.Model):
     lectName = models.CharField(max_length= 150)
     professor = models.CharField(max_length = 150)
     content = models.TextField()
+    rating = models.IntegerField(default= 1)
+    author = models.CharField(max_length = 150, default='')
 
     def __str__(self):
         return f"{self.lectName}, {self.professor}"

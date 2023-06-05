@@ -10,3 +10,8 @@ class study(models.Model):
     title = models.CharField(max_length = 150, default='Empty title')
     summary = models.TextField(default='')
     contents = models.TextField(default='')
+
+    def __str__ (self):
+        return self.title
+
+

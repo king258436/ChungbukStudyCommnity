@@ -84,13 +84,34 @@ def evalMain(request):
     else:
         myLects = LectList.objects.get(username = request.user.username).myLects.all()
         login = 1
-    eval = evalLect.objects.all()
+    evalList = evalLect.objects.all()
     lectCount = len(myLects)
+    if request.method == 'POST':
+        if 'searchBtn' in request.POST:
+            lookingFor = []
+            search = request.POST.get('search_subject')
+            lectList = Lecture.objects.filter(lectName__icontains = search)
+            for i in lectList:
+                for j in i.eval:
+                    lookingFor.append(j) #필요한 자료들을 넘겨받았슴동
+            evalList = lookingFor
+        elif 'evalBtn' in request.POST:
+            newEval = evalLect()
+            newEval.content = request.POST.get('contents')
+            newEval.rating = request.POST.get('ratingLect')
+            print(request.POST.get('ratingLect'))
+            lectC = int(request.POST.get('mySelect'))-1
+            newEval.lectName = myLects[lectC].lectName
+            newEval.professor = myLects[lectC].professor
+            newEval.author = request.user.username
+            newEval.save()
+            myLects[lectC].eval.add(newEval)
+
     context = {
         'myLects': myLects,
         'lectCount': lectCount,
         'login' : login,
-        'evals' : eval,
+        'evalList' : evalList,
     }
     return render(request, 'board/eval.html', context)
 
