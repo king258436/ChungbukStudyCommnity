@@ -2,10 +2,10 @@
     box-sizing: content-box;
 } 
 body{
-    background: white;
+    background: rgb(236, 236, 236);
 }
 .row{
-    background: white;
+    background: rgb(236, 236, 236);
 }
 .btn1{
     border : none;
