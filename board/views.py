@@ -36,8 +36,9 @@ def Posting(request,lectName,pk):
         likeit = 0
     if request.method == "POST":
         if 'delBtn' in request.POST:
-            post.delete()
-            return redirect(f'/board/post/{lectName}')
+            if post.author == request.user.username:  # 게시물 작성자만 게시물 삭제 권한 부여
+                post.delete()
+                return redirect(f'/board/post/{lectName}')
         elif 'likeBtn' in request.POST:
             try:
                 likes = post.likes.get(username = request.user.username)
@@ -56,6 +57,16 @@ def Posting(request,lectName,pk):
             mycomment.author = request.user.username
             mycomment.save()
             post.comments.add(mycomment)
+        # 댓글 삭제 함수
+        elif 'deleteCommentBtn' in request.POST:
+            commentId = request.POST.get('commentId')
+            try:
+                comment = Comment.objects.get(id=commentId)
+                if comment.author == request.user.username:
+                    comment.delete()
+            except Comment.DoesNotExist:
+                pass
+    
     context ={
         'lectName' : lectName,
         'pk' : pk, 
