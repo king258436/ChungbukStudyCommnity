@@ -45,6 +45,34 @@
         id="contents"
         name="contents"
         required></textarea><br>
+      
+        <!-- 작성 일자 -->
+        <label for="postdate">작성 일자</label><br>
+        <input type="text" class="form-control" id="postdate" name="postdate" value="{{ date.today }}" disabled><br>
+
+        <!-- 폰트 선택 부분 -->
+        <label for="font">글꼴</label><br>
+        <select class="form-control" id="font" name="font">
+          <option value="Arial">Arial</option>
+          <option value="Verdana">Verdana</option>
+          <option value="Helvetica">Helvetica</option>
+          <option value="맑은 고딕">맑은 고딕</option>
+          <option value="궁서">궁서</option>
+          <option value="돋움">돋움</option>
+        </select><br>
+
+        <!-- 글자 크기 선택 부분 -->
+        <label for="fontsize">글자 크기</label><br>
+        <select class="form-control" id="fontsize" name="fontsize">
+          <option value="12px">12px</option>
+          <option value="16px">16px</option>
+          <option value="16px">20px</option>
+          <option value="16px">24px</option>
+          <option value="16px">28px</option>
+          <option value="16px">32px</option>
+          <option value="16px">36px</option>
+          <option value="16px">40px</option>
+        </select><br>
 
         <!-- 파일 선택 -->
         <input class="form-control" type="file" name="mainphoto" /><br /><br />
