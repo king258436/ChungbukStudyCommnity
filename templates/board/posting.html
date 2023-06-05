@@ -75,6 +75,7 @@
                     <a href="{% url 'board:board' lectName %}"><button class="btn btn-outline-secondary" type="button">목록</button></a>
                     
                     <!-- 글 삭제 버튼 시작 부분 -->
+                    {% if post.author == request.user.username %}
                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         삭제
                     </button>
@@ -90,11 +91,16 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-                              <button type="sumbit" class="btn btn-secondary" name = "delBtn">삭제하기</button></a>
+                              <form action="{% url 'board:Posting' lectName pk %}" method='POST'>
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-secondary" name = "delBtn">삭제하기</button>
+                              </form>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </form>
+                      {% endif %}
                       <!-- 글 삭제 버튼 끝 부분 -->
                 </div>
                 <hr>
@@ -110,6 +116,16 @@
                 <div class="col-2">
                     작성일자
                 </div>
+                <!-- 댓글 삭제 부분 -->
+                {% if comm.author == request.user.username %}
+                    <div class="col-1">
+                        <form action="{% url 'board:Posting' lectName pk %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="commentId" value="{{ comm.id }}">
+                            <button type="submit" class="btn btn-outline-danger" name="deleteCommentBtn">삭제</button>
+                        </form>
+                    </div>
+                {% endif %}
             </div>
             <hr>
             {% endfor %}
