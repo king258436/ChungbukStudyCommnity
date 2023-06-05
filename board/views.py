@@ -23,6 +23,10 @@ def NewPost(request,lectName): #게시판 렌더링 함수
 def Posting(request,lectName,pk):
     post = Post.objects.get(pk=pk)
     try:
+        lectList = LectList.objects.get(username = request.user.username).myLects.all()
+    except:
+        lectList = []
+    try:
         likes = post.likes.get(username = request.user.username)
         if likes.likeIt:
             likeit = 1
@@ -57,7 +61,8 @@ def Posting(request,lectName,pk):
         'pk' : pk, 
         'post' : post, 
         'likeit' : likeit,
-        'comments' : post.comments.all()
+        'comments' : post.comments.all(),
+        'lectList' : lectList,
     }
     return render(request, "board/posting.html", context)
 
@@ -92,21 +97,22 @@ def evalMain(request):
             search = request.POST.get('search_subject')
             lectList = Lecture.objects.filter(lectName__icontains = search)
             for i in lectList:
-                for j in i.eval:
+                for j in i.eval.all():
                     lookingFor.append(j) #필요한 자료들을 넘겨받았슴동
             evalList = lookingFor
         elif 'evalBtn' in request.POST:
-            newEval = evalLect()
-            newEval.content = request.POST.get('contents')
-            newEval.rating = request.POST.get('ratingLect')
-            print(request.POST.get('ratingLect'))
             lectC = int(request.POST.get('mySelect'))-1
-            newEval.lectName = myLects[lectC].lectName
-            newEval.professor = myLects[lectC].professor
-            newEval.author = request.user.username
-            newEval.save()
-            myLects[lectC].eval.add(newEval)
-
+            try:
+                evalLect.objects.get(author = request.user.username, lectName = myLects[lectC].lectName)
+            except:
+                newEval = evalLect()
+                newEval.content = request.POST.get('contents')
+                newEval.rating = request.POST.get('ratingLect')
+                newEval.lectName = myLects[lectC].lectName
+                newEval.professor = myLects[lectC].professor
+                newEval.author = request.user.username
+                newEval.save()
+                myLects[lectC].eval.add(newEval)
     context = {
         'myLects': myLects,
         'lectCount': lectCount,

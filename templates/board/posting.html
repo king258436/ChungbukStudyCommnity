@@ -32,7 +32,7 @@
         <!-- 작성된 게시글 본문 시작 -->
         <div class="col-lg-9" style="height:1000px; word-break: break-all;">
 
-                    <br><h4>현재 게시판 이름</h4>
+                    <br><h4>{{lectName}}</h4>
                     <!-- 글 제목 -->
                     <hr>
                     <div class="row">
@@ -40,7 +40,7 @@
                             &nbsp;{{post.title}}
                         </div>
                         <div class="col-2" style="text-align: center;">
-                            00-00-00 00:00
+                            {{post.pubDate}}
                         </div>
                     </div>
                     <hr>
@@ -102,13 +102,13 @@
             {% for comm in comments %}
             <div class="row">
                 <div class="col-2">
-                    작성자
+                    {{comm.author}}
                 </div>
                 <div class="col">
                     {{comm.content}}
                 </div>
                 <div class="col-2">
-                    작성일자
+                    {{comm.pubDate}}
                 </div>
             </div>
             <hr>
