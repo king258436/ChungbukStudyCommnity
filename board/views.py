@@ -32,7 +32,7 @@ def Posting(request,lectName,pk):
         likeit = 0
     if request.method == "POST":
         if 'delBtn' in request.POST:
-            if post.author == request.user.username:  # 게시물 작성자만 게시물 삭제 권한 여부여
+            if post.author == request.user.username:  # 게시물 작성자만 게시물 삭제 권한 부여
                 post.delete()
                 return redirect(f'/board/post/{lectName}')
         elif 'likeBtn' in request.POST:
