@@ -9,5 +9,6 @@ urlpatterns = [
     path('post/<str:lectName>/newPost/', NewPost, name='NewPost'),
     path('post/<str:lectName>/see/<int:pk>/', Posting, name ='Posting'),
     path('eval/', evalMain, name='eMain'),
-    path('eval/lect/<str:lectName>', evalBoard, name='eBoard'),
+    path('eval/lect/<str:lectName>/<str:professor>', evalBoard, name='eBoard'),
+    path('eval/myeval/', myEval, name = 'myEval'),
 ]

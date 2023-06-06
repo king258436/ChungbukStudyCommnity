@@ -66,7 +66,6 @@ def Posting(request,lectName,pk):
                     comment.delete()
             except Comment.DoesNotExist:
                 pass
-    
     context ={
         'lectName' : lectName,
         'pk' : pk, 
@@ -100,7 +99,10 @@ def evalMain(request):
     else:
         myLects = LectList.objects.get(username = request.user.username).myLects.all()
         login = 1
-    evalList = evalLect.objects.all()
+    evalList = list(evalLect.objects.all())
+    evalC = len(evalList)
+    if evalC > 4:
+        evalList = evalList[evalC-4:evalC]
     lectCount = len(myLects)
     if request.method == 'POST':
         if 'searchBtn' in request.POST:
@@ -132,5 +134,23 @@ def evalMain(request):
     }
     return render(request, 'board/eval.html', context)
 
-def evalBoard(request,lectName):
-    return render(request, 'board/evalPost.html', {'lectName', lectName})
+def myEval(request):
+    if not request.user.is_authenticated:
+        redirect('accounts:Login')
+    evalList = evalLect.objects.filter(author = request.user.username)
+    myLects = LectList.objects.get(username = request.user.username).myLects.all()
+    lectCount = len(myLects)
+    return render(request, 'board/myEval.html', {'evalList': evalList,'myLects': myLects,'lectCount': lectCount})
+
+def evalBoard(request,lectName,professor):
+    evalList = evalLect.objects.filter(lectName = lectName, professor = professor)
+    myLects = LectList.objects.get(username = request.user.username).myLects.all()
+    lectCount = len(myLects)
+    context = {
+        'myLects': myLects,
+        'lectCount': lectCount,
+        'lectName': lectName, 
+        'professor':professor,
+        'evalList':evalList,
+    }
+    return render(request, 'board/evalBoard.html', context)

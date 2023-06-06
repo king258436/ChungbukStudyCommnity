@@ -71,14 +71,14 @@
                 <li class="list-group-item1 d-flex justify-content-between align-items-start"
                     style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px">
                     <div class="ms-2 me-auto">
-                        <a href="#">내가 쓴 강의 모아보기</a>
+                        <a href="{% url 'board:myEval' %}">내가 쓴 강의 모아보기</a>
                     </div>
                 </li>
                 {% for lect in myLects %}
                 <li class="list-group-item1 d-flex justify-content-between align-items-start"
                     style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px">
                     <div class="ms-2 me-auto">
-                        <a href="{% url 'board:eBoard' lect.lectName %}">{{lect.lectName}}</a>
+                        <a href="{% url 'board:eBoard' lect.lectName lect.professor %}">{{lect.lectName}} | {{lect.professor}}</a>
                     </div>
                     <span class="badge bg-primary rounded-pill">평가 수 :</span>
                 </li>
