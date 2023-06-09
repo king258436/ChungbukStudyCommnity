@@ -78,7 +78,8 @@
                 <li class="list-group-item1 d-flex justify-content-between align-items-start"
                     style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px">
                     <div class="ms-2 me-auto">
-                        <a href="{% url 'board:eBoard' lect.lectName lect.professor %}">{{lect.lectName}} | {{lect.professor}}</a>
+                        <a href="{% url 'board:eBoard' lect.lectName lect.professor %}">{{lect.lectName}} |
+                            {{lect.professor}}</a>
                     </div>
                     <span class="badge bg-primary rounded-pill">평가 수 :</span>
                 </li>
@@ -100,7 +101,7 @@
             <h3 style="text-align: center; padding: 5px;">강의 평가</h3>
             <p style="text-align: center">비방이나, 욕설 자제부탁 드립니다.</p>
             <!-- 강의 추가하는 부분 시작 -->
-            <form action = "{% url 'board:eMain' %}", method="POST">
+            <form action="{% url 'board:eMain' %}" , method="POST">
                 {% csrf_token %}
                 <div class="form-floating">
                     <div class="row">
@@ -123,25 +124,31 @@
                                 <div class="fw-bold">{{eval.lectName}} | {{eval.rating}}.0/5.0</div>
                                 {{eval.content}}
                             </div>
-                            <span class="badge bg-info rounded-pill">{{eval.professor}}</span>
+                            <span class="badge bg-info rounded-pill"
+                                style="position:relative; left:50px;">{{eval.professor}}</span>
+                            <div style="margin : 15px;">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" style="position : relative; top:15px ;left:-10px;
+                            ">삭제</button>
+                            </div>
                         </li>
                         {% endfor %}
                     </ol>
                 </div>
                 <br>
-                <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px;" name = "mySelect" id = "mySelect">
+                <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px;"
+                    name="mySelect" id="mySelect">
                     <option selected>강의 선택</option>
                     {% for lect in myLects %}
                     <option value="{{forloop.counter}}">{{lect.lectName}}</option>
                     {% endfor %}
                 </select>
-                <div class="rating" name = "rating" id="rating" rating = "0">
+                <div class="rating" name="rating" id="rating" rating="0">
                     <span onclick="setRating(1)">☆</span>
                     <span onclick="setRating(2)">☆</span>
                     <span onclick="setRating(3)">☆</span>
                     <span onclick="setRating(4)">☆</span>
                     <span onclick="setRating(5)">☆</span>
-                    <input id = 'ratingLect' name = 'ratingLect' value = "0" style = "display:none;"></input>
+                    <input id='ratingLect' name='ratingLect' value="0" style="display:none;"></input>
                 </div>
                 <script>
                     function setRating(rating) {
@@ -160,7 +167,7 @@
                 </script>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-                    <textarea class="form-control" name = "contents" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" name="contents" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
                 <!-- 추가 버튼 -->
                 <div class="add_btn" style="text-align: center; margin-bottom: 30px;">
