@@ -127,8 +127,14 @@
                             <span class="badge bg-info rounded-pill"
                                 style="position:relative; left:50px;">{{eval.professor}}</span>
                             <div style="margin : 15px;">
-                                <button type="button" class="btn btn-outline-secondary btn-sm" style="position : relative; top:15px ;left:-10px;
-                            ">삭제</button>
+                                {% if eval.author == request.user.username %}
+                                <form action="{% url 'board:eMain' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="evalId" value="{{ eval.id }}">
+                                    <button type="submit" name = "delBtn" class="btn btn-outline-secondary btn-sm" style="position : relative; top:15px ;left:-10px;
+                                    ">삭제</button>
+                                </form>
+                                {% endif %}
                             </div>
                         </li>
                         {% endfor %}

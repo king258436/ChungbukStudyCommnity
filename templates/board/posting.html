@@ -62,12 +62,10 @@
         <form action = "{% url 'board:Posting' lectName pk  %}" method = "POST">
             {% csrf_token %}
             <div style="justify-content: center;">
-                <!-- 댓글(갯수 보여주기?) 좋아요 버튼 -->
-                <button class="btn btn-outline-secondary">댓글 #(갯수)</button>
                 {% if not likeit %}
                 <button id="btn" class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요</button>
                 {% else %}
-                <button class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요 취소</button>
+                <button class="btn btn-outline-secondary" type="submit" name = "dislikeBtn">좋아요 취소</button>
                 {% endif %} 
                 <!-- 우측 하단 버튼들 -->
                 <div id="btn_posting" style="float:right;">
@@ -91,10 +89,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
-                              <form action="{% url 'board:Posting' lectName pk %}" method='POST'>
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-secondary" name = "delBtn">삭제하기</button>
-                              </form>
+                            <button type="submit" class="btn btn-secondary" name = "delBtn">삭제하기</button>
                             </div>
                           </div>
                         </div>

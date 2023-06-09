@@ -5,7 +5,7 @@ from accounts.models import *
 
 class like(models.Model):
     username = models.CharField(max_length=150)
-    likeIt = models.BooleanField(default=0)
+    likeIt = models.IntegerField(default=0)
 
 class evalLect(models.Model):
     lectName = models.CharField(max_length= 150)

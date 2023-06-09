@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User 
+from django.core.paginator import Paginator
 from .models import *
 from accounts.models import *
 
@@ -11,11 +12,13 @@ def NewPost(request,lectName): #게시판 렌더링 함수
         postContent = request.POST.get('contents')
         postAuthor = request.user.username
         postLectName = lectName
+        postTag = request.POST.get('mySelect')
         postIt = Post()
         postIt.title = postTitle
         postIt.content = postContent
         postIt.author = postAuthor
         postIt.lectName = postLectName
+        postIt.tag = postTag
         postIt.save()
         return redirect(f'/board/post/{lectName}') # 사용자를 게시판 페이지로 리디렉션
     return render(request, 'board/newpost.html', {'lectName' : lectName, 'lectList' :lectList})
@@ -28,10 +31,7 @@ def Posting(request,lectName,pk):
         lectList = []
     try:
         likes = post.likes.get(username = request.user.username)
-        if likes.likeIt:
-            likeit = 1
-        else:
-            likeit = 0
+        likeit = 1
     except:
         likeit = 0
     if request.method == "POST":
@@ -42,15 +42,17 @@ def Posting(request,lectName,pk):
         elif 'likeBtn' in request.POST:
             try:
                 likes = post.likes.get(username = request.user.username)
-                if likes.likeit:
-                    likes.likeit = 0
-                else:
-                    likes.likeit = 1
+                likeit = 1
             except:
                 me = like()
-                me.username, me.likeit = request.user.username, 1
+                me.username = request.user.username
+                me.likeit = 1
                 me.save()
                 post.likes.add(me)
+                post.save()
+        elif 'dislikeBtn' in request.POST:
+            likes = post.likes.get(username = request.user.username)
+            likes.delete()
         elif 'commentBtn' in request.POST:
             mycomment = Comment()
             mycomment.content = request.POST.get('comments')
@@ -94,7 +96,31 @@ def lectBoard(request,lectName):
     paginator = Paginator(postList, 10)
     pageNum = request.GET.get('page')
     pageObj = paginator.get_page(pageNum)
-    return render(request, "board/board.html", {'lectList' : lectList,'postList':postObj, 'lectName' : lectName})
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
+
+def lectInfo(request,lectName):
+    if not request.user.is_authenticated:
+        return redirect("main:home")
+    lectList = LectList.objects.get(username = request.user.username)
+    lectList = lectList.myLects.all()
+    postList = Post.objects.filter(lectName = lectName, tag = "정보 글")
+    
+    paginator = Paginator(postList, 10)
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
+
+def lectQuest(request,lectName):
+    if not request.user.is_authenticated:
+        return redirect("main:home")
+    lectList = LectList.objects.get(username = request.user.username)
+    lectList = lectList.myLects.all()
+    postList = Post.objects.filter(lectName = lectName, tag = "질문 글")
+    
+    paginator = Paginator(postList, 10)
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
 
 def evalMain(request):
     myLects = []
@@ -130,6 +156,15 @@ def evalMain(request):
                 newEval.author = request.user.username
                 newEval.save()
                 myLects[lectC].eval.add(newEval)
+        elif 'delBtn' in request.POST:
+            evalId = request.POST.get('evalId')
+            try:
+                evalObj = evalLect.objects.get(id=evalId)
+                if evalObj.author == request.user.username:
+                    evalObj.delete()
+            except evalLect.DoesNotExist:
+                pass
+
     context = {
         'myLects': myLects,
         'lectCount': lectCount,

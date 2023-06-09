@@ -34,6 +34,12 @@
     <h4>글쓰기 페이지</h4>
     <form action="{% url 'board:NewPost' lectName %}" method="POST">
         {% csrf_token %}
+        <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px;" name = "mySelect" id = "mySelect">
+          <option selected>태그 선택</option>
+          <option value="자유 글">자유 글</option>
+          <option value="정보 글">정보 글</option>
+          <option value="질문 글">질문 글</option>
+        </select>
         <!-- 제목 입력 부분 -->
         <label for="postname">제목</label><br />
         <input type="text" class="form-control" id="postname" name="postname" required><br>
