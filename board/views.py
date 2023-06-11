@@ -42,7 +42,7 @@ def Posting(request,lectName,pk):
         elif 'likeBtn' in request.POST:
             try:
                 likes = post.likes.get(username = request.user.username)
-                likeit = 1
+                likes.delete()
             except:
                 me = like()
                 me.username = request.user.username
@@ -50,9 +50,11 @@ def Posting(request,lectName,pk):
                 me.save()
                 post.likes.add(me)
                 post.save()
+            return redirect(request.path_info)
         elif 'dislikeBtn' in request.POST:
             likes = post.likes.get(username = request.user.username)
             likes.delete()
+            return redirect(request.path_info)
         elif 'commentBtn' in request.POST:
             mycomment = Comment()
             mycomment.content = request.POST.get('comments')
