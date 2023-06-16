@@ -4,7 +4,10 @@
     <div class="row">
        <!-- 좌측 사이드 카테고리 시작 부분 -->
        <div class="col-lg-2">
-        <br><h4 style="color: white;">어캐찾앗누?</h4><br>
+        <br />
+      <h4 style="color: #ECECEC">어캐찾앗누?</h4>
+      <br>
+      <div style="height:20px"></div>
         <table class="table" style="table-layout:fixed">
             <thead>
                 <tr class="text-center table-dark">
@@ -30,8 +33,9 @@
         <div class="col-auto"></div>
 
         <!-- 작성된 게시글 본문 시작 -->
+        
         <div class="col-lg-9" style="height:1000px; word-break: break-all;">
-
+                    
                     <br><h4>{{lectName}}</h4>
                     <!-- 글 제목 -->
                     <hr>
@@ -63,9 +67,9 @@
             {% csrf_token %}
             <div style="justify-content: center;">
                 {% if not likeit %}
-                <button id="btn" class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요</button>
+                <button id="btn" class="btn btn-outline-danger" type="submit" name = "likeBtn">좋아요</button>
                 {% else %}
-                <button class="btn btn-outline-secondary" type="submit" name = "dislikeBtn">좋아요 취소</button>
+                <button class="btn btn-outline-danger" type="submit" name = "dislikeBtn">좋아요 취소</button>
                 {% endif %} 
                 <!-- 우측 하단 버튼들 -->
                 <div id="btn_posting" style="float:right;">

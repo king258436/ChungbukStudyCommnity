@@ -8,7 +8,8 @@
     <div class="col-lg-2">
       <br />
       <h4 style="color: #ECECEC">어캐찾앗누?</h4>
-      <br />
+      <br>
+      <div style="height:20px"></div>
       <table class="table" style="table-layout: fixed">
         <thead>
           <tr class="text-center table-dark">
@@ -39,6 +40,7 @@
             <h4>{{lectName}}</h4>
             <div class="btns">
               <a href="{% url 'board:board' lectName %}"><button class="btn btn-primary">전체글</button></a>
+              <a href="{% url 'board:FreeWrite' lectName %}"><button class="btn btn-secondary">자유글</button></a>
               <a href="{% url 'board:Question' lectName %}"><button class="btn btn-secondary">질문글</button></a>
               <a href="{% url 'board:Information' lectName %}"><button class="btn btn-secondary">정보글</button></a>
               <a href="{% url 'board:NewPost' lectName%}"
@@ -47,7 +49,7 @@
             </div>
       
             <!-- 글 목록 시작 부분 -->
-            <div style="min-height: 450px;">
+            <div style="min-height: 460px;">
             <table class="table" style="table-layout: fixed;">
               <!-- 테이블 너비 비율 조정해놓은 부분 -->
               <colgroup>

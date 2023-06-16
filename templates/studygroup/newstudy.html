@@ -8,16 +8,16 @@
       <!-- 스터디 이름 입력창 -->
       <div class="form-row my-3">
         <div class="col-6">
-          <label for="std_name">스터디 이름</label>
+          <label for="std_name">스터디 주제</label>
           <input
             type="text"
             class="form-control"
             name = "stdPurpose"
-            id="std_name"
+            id="std_Purpose"
             maxlength="15"
-            placeholder="스터디 이름을 입력해 주세요"
+            placeholder="스터디 주제를 입력해 주세요"
             onfocus="placeholder=''"
-            onblur="placeholder='여러분의 스터디 이름을 입력해 주세요'"
+            onblur="placeholder='스터디 주제를 입력해 주세요'"
             required
           />
         </div>
@@ -33,7 +33,7 @@
             id="std_title"
             placeholder="스터디를 소개할 제목을 입력해 주세요"
             onfocus="placeholder=''"
-            onblur="placeholder='여러분의 스터디를 소개할 제목을 입력해 주세요'"
+            onblur="placeholder='스터디를 소개할 제목을 입력해 주세요'"
             required
           />
         </div>
@@ -41,13 +41,13 @@
       <!-- 스터디 내용 요약 입력창 스터디 글 목록에서 출력해줄 내용 -->
       <div class="form-row my-3">
         <div class="col">
-          <label for="short_std_content">스터디 내용 3줄 요약</label>
+          <label for="short_std_content">스터디 내용 한줄 요약</label>
           <textarea
             class="form-control"
             name="contentSum"
             id="short_std_content"
             cols="30"
-            rows="3"
+            rows="1"
           ></textarea>
         </div>
       </div>
@@ -63,13 +63,6 @@
             rows="11"
             required
           >
-스터디 내용을 가능한 구체적으로 작성해주세요
-
-Example)
-
-• 스터디 계획/목표 : 
-
-• 이메일 : 
 </textarea
           >
           <!-- 템플릿 텍스트로 보여줄거 -->
