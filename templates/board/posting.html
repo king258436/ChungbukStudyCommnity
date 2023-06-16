@@ -63,9 +63,9 @@
             {% csrf_token %}
             <div style="justify-content: center;">
                 {% if not likeit %}
-                <button id="btn" class="btn btn-outline-secondary" type="submit" name = "likeBtn">좋아요</button>
+                <button id="btn" class="btn btn-outline-danger" type="submit" name = "likeBtn">좋아요</button>
                 {% else %}
-                <button class="btn btn-outline-secondary" type="submit" name = "dislikeBtn">좋아요 취소</button>
+                <button class="btn btn-outline-danger" type="submit" name = "dislikeBtn">좋아요 취소</button>
                 {% endif %} 
                 <!-- 우측 하단 버튼들 -->
                 <div id="btn_posting" style="float:right;">

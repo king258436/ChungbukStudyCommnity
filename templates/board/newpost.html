@@ -35,7 +35,7 @@
     <form action="{% url 'board:NewPost' lectName %}" method="POST">
         {% csrf_token %}
         <select class="form-select" aria-label="Default select example" style="margin-bottom: 5px;" name = "mySelect" id = "mySelect">
-          <option selected>태그 선택</option>
+          <option selected value="자유 글">태그 선택</option>
           <option value="자유 글">자유 글</option>
           <option value="정보 글">정보 글</option>
           <option value="질문 글">질문 글</option>

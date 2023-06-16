@@ -8,6 +8,7 @@ urlpatterns = [
     path('post/<str:lectName>', lectBoard, name = 'board'),
     path('post/<str:lectName>/newPost/', NewPost, name='NewPost'),
     path('post/<str:lectName>/see/<int:pk>/', Posting, name ='Posting'),
+    path('post/<str:lectName>/free', lectFree , name = 'FreeWrite'),
     path('post/<str:lectName>/question', lectQuest , name = 'Question'),
     path('post/<str:lectName>/info', lectInfo, name = 'Information'),
     path('eval/', evalMain, name='eMain'),
