@@ -22,7 +22,7 @@ def index(request):
     else: #로그인 안돼있음 
         loginCheck = 0
         haveLect = 0
-    hotPost = list(Post.objects.all())
+    hotPost = list(Post.objects.annotate(likeCount=models.Count('likes')).order_by('-likeCount'))
     if len(hotPost) <=0:
         hotPost = []
         PostCheck = 0
@@ -30,10 +30,14 @@ def index(request):
         hotPost = hotPost[0:min(4,len(hotPost))]
         postinfo = []
         for i in hotPost:
-            postinfo.append({'lectName' : i.lectName,'likeCount' : i.likeCount(), 'title' : i.title, 'pk' : i.pk })
+            postinfo.append({'lectName' : i.lectName,'likeCount' : i.likeCount, 'title' : i.title, 'pk' : i.pk })
         PostCheck =1
+    emptyLect = []
+    for i in range(0,8-len(lectList)):
+        emptyLect.append(None)
     context ={
         'lectList' : lectList,
+        'emptyLect' : emptyLect,
         'loginCheck' : loginCheck,
         'haveLect' : haveLect,
         'postinfo' : postinfo,

@@ -70,6 +70,11 @@
                     <td></td>
                 </tr>
                 {% endfor %}
+                {% for none in emptyLect %}
+                <tr class="write">
+                    <td style = "color : #ffebb5">Empty</td>
+                </tr>
+                {% endfor %}
                 {% else %}
                 <tr class="write">
                     <td> 이런! 아직 수강중인 강의가 없어요.. 아래에 링크로 강의를 추가해주세요! </td>
