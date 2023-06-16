@@ -112,6 +112,18 @@ def lectInfo(request,lectName):
     pageObj = paginator.get_page(pageNum)
     return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
 
+def lectFree(request,lectName):
+    if not request.user.is_authenticated:
+        return redirect("main:home")
+    lectList = LectList.objects.get(username = request.user.username)
+    lectList = lectList.myLects.all()
+    postList = Post.objects.filter(lectName = lectName, tag = "자유 글")
+    
+    paginator = Paginator(postList, 10)
+    pageNum = request.GET.get('page')
+    pageObj = paginator.get_page(pageNum)
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
+
 def lectQuest(request,lectName):
     if not request.user.is_authenticated:
         return redirect("main:home")
