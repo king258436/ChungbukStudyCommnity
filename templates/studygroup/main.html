@@ -82,32 +82,22 @@
       <div class="row justify-content-center">
         <div class="col-auto">
           <ul class="pagination">
-            {% for num in postList.paginator.page_range %}
-            {% if postList.number == num %}
-            <li class="page-item active">
-              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
+            {% for num in studyList.paginator.page_range %}
+              {% if studyList.number == num %}
+              <li class="page-item active">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+              </li>
+              {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+              </li>
+              {% endif %}
+              {% endfor %}
           </ul>
         </div>
       </div>
     </nav>
-    <nav aria-label="Page naviagation example" id="page">
-      <div class="row justify-content-center">
-        <div class="col-auto">
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    
   </div>
 </body>
 {% endblock %}

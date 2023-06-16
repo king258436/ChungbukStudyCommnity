@@ -93,7 +93,7 @@ def lectBoard(request,lectName):
         return redirect("main:home")
     lectList = LectList.objects.get(username = request.user.username)
     lectList = lectList.myLects.all()
-    postList = Post.objects.filter(lectName = lectName)
+    postList = list(Post.objects.filter(lectName = lectName))[::-1]
     
     paginator = Paginator(postList, 10)
     pageNum = request.GET.get('page')
@@ -131,10 +131,10 @@ def evalMain(request):
     else:
         myLects = LectList.objects.get(username = request.user.username).myLects.all()
         login = 1
-    evalList = list(evalLect.objects.all())
+    evalList = list(evalLect.objects.all())[::-1]
     evalC = len(evalList)
     if evalC > 4:
-        evalList = evalList[evalC-4:evalC]
+        evalList = evalList[0:4]
     lectCount = len(myLects)
     if request.method == 'POST':
         if 'searchBtn' in request.POST:
