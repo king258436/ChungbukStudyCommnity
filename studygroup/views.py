@@ -9,6 +9,7 @@ def Main(request):
     return render(request, "studygroup/main.html", context)
 
 def Posting(request,studyName):
+    isready = 1
     stu = study.objects.get(title = studyName)
     if request.user.is_authenticated:
         if stu.author == request.user.username:
@@ -26,10 +27,13 @@ def Posting(request,studyName):
         elif 'changeStat' in request.POST:
             if stu.tag == "모집 중":
                 stu.tag = "모집 완료"
+                isready=1
             else:
                 stu.tag = "모집 중"
+                isready=0
             stu.save()
     context = {
+        'isready':isready,
         'studyName':studyName,
         'stu' : stu,
         'myPost' : myPost,
