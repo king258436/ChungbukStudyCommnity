@@ -3,82 +3,9 @@
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: rgb(236, 236, 236);
-        }
-
-        h1 {
-            font-weight: bold;
-        }
-
-        #bigRow {
-            border-top: 1px solid black;
-            margin: 0px;
-            padding-top: 5px;
-            margin-bottom: 10px;
-        }
-
-        #title {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-
-        a.button {
-            color: black;
-            height: 55px;
-            display: contents;
-            /* box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset; */
-        }
-
-        a.button:hover {
-            /* -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360); */
-            color: rgba(255, 255, 255, 0.85);
-            box-shadow: rgb(170, 170, 171, 0.7) 0 0px 0px 40px inset;
-            display: block;
-            text-decoration: none;
-            padding-top: 15px;
-            font-weight: bold;
-
-        }
-
-
-        .row {
-            align-items: center;
-            background-color: rgb(255, 255, 255);
-            height: 55px;
-        }
-
-        .col-sm-9 .row {
-            border-top: 1px solid black;
-            height: 50px;
-        }
-
-        .hsd {
-            align-items: center;
-            padding-top: 20px;
-            text-align: center;
-            min-height: 500px;
-            background-color: white;
-            border-radius: 10px;
-        }
-
-        .col-sm-9 .row a:hover {
-            color: rgb(128, 128, 128);
-            text-decoration: none;
-        }
-
-        body {
-            align-items: center;
-        }
-    </style>
-
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/boardMain.css' %}" />
 </head>
 
 <body>
@@ -89,8 +16,8 @@
 
         <div class="hsd">
             <div class=container>
+                {% for lect in lectList %}
                 <div class="row">
-
                     <div class="row">
                         <div class="col">
                             <h5 style="font-weight: bold;">번호/총 수</h5>
@@ -127,7 +54,6 @@
                 </div>
                 <!-- asdf -->
                 <div id="bigRow" class="row" style="align-items: center;">
-
                     <div class="row" style="text-align: center">
                         <div class="col">
                             <a>번호 / 총 수</a>
@@ -141,7 +67,6 @@
                         <div class="col">
                             <a href="#" class="button">들어가기 </a>
                         </div>
-
                     </div>
                 </div>
             </div>
