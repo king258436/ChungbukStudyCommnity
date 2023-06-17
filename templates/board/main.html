@@ -1,54 +1,117 @@
 {% extends 'Base.html' %}
 {% block content %}
 
-<title>게시판</title>
-<link rel="stylesheet" href="">
-    <!-- body -->
-    <div class="container">
-        <div class="row">
-            <!-- 여백 -->
-            <div class="col-auto"></div>
-            <!-- 우측 본문 시작 부분 -->
-            <div class="col-lg-9" style="height: 1000px;"> 
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: rgb(236, 236, 236);
+        }
+
+        h1 {
+            font-family: 'Bagel Fat One', cursive;
+            font-family: 'Gamja Flower', cursive;
+        }
+
+        #title {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+
+        #button a {
+            -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            display: block;
+            margin: 20px auto;
+            max-width: 180px;
+            text-decoration: none;
+            border-radius: 4px;
+            padding: 20px 30px;
+        }
+
+        a.button {
+            color: rgba(30, 22, 54, 0.6);
+            box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+        }
+
+        a.button:hover {
+            color: rgba(255, 255, 255, 0.85);
+            box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+        }
+
+
+        .row {
+            display: flex;
+            align-items: center;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            min-height: ;
+        }
+
+        .col-sm-9 .row {
+            border: 1px solid black;
+            border-radius: 20px;
+            height: 65px;
+            background-color: rgb(197, 239, 246);
+            width: 100%;
+        }
+
+        .hsd {
+            text-align: center;
+            min-height: 500px;
+            background-color: white;
+            width: 110%;
+            border-radius: 10px;
+        }
+
+        .col-sm-9 .row a:hover {
+            color: rgb(128, 128, 128);
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" id="total">
+        <div id="title">
+            <h1>과목 게시판!</h1>
+        </div>
+
+        <div class="hsd">
+            <div class=container>
                 <div class="row">
-                    <div class="col-md">
-                        <br><h4>게시판 목록</h4><br>
+                    <div class="col-sm-9" style="display: flex; justify-content: flex-end;">
+                        <div class="row">
+                            <div class="col-4 col-sm-3">
+                                <a>번호 / 총 수</a>
+                            </div>
+                            <div class="col-4 col-sm-6">
+                                <a>과목이름</a>
+                            </div>
+                            <div class="col-4 col-sm-3">
+                                <a>교수이름</a>
+                            </div>
+                        </div>
                     </div>
-                <table class="table"  style="table-layout: fixed;">
-                    <!-- 테이블 너비 비율 조정해놓은 부분 -->
-                    <colgroup>
-                        <col width="10%">
-                        <col max-width="60%">
-                        <col width="15%">
-                        <col width="15%">
-                    </colgroup>
 
-                    <!-- 글 목록 상단 바 -->
-                    <thead>
-                        <tr class="text-center table-dark">
-                            <th>번호</th>
-                            <th>강좌명</th>
-                            <th>교수님</th>
-                        </tr>
-                    </thead>
 
-                    <!-- 글 목록 부분 -->
-                    <tbody>
-                    {% for lect in lectList %}
-                        <!-- 게시판(postlist)의 게시글(list)을 하나씩 보여줍니다 -->
-                        <!-- {와 %로 이루어진 구문 내부엔 파이썬이 사용됩니다 -->
-                        <!-- 게시글 클릭시 세부페이지로 넘어갑니다-->
-                        <tr>
-                            <td class="text-center">{{forloop.revcounter}}</td>
-                            <td class="text-start" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; "><a href="/board/post/{{lect.lectName}}" style="color:black; text-decoration: none;">{{lect.lectName}}</a></td>
-                            <td class="text-center">{{lect.professor}}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                    <div class="col-sm-3">
+                        <div id="button" class="mem">
+
+                            <a href="#" class="button">들어가기 </a>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- 우측 본문 끝 부분 -->
         </div>
     </div>
+</body>
 {% endblock %}
