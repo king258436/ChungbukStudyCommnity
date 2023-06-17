@@ -86,7 +86,8 @@ def index(request):
         return redirect("main:home")
     lectList = LectList.objects.get(username = request.user.username)
     lectList = lectList.myLects.all()
-    return render(request, "board/main.html", {"lectList": lectList})
+    lectCount = len(lectList)
+    return render(request, "board/main.html", {"lectList": lectList, "lectCount" : lectCount})
 
 def lectBoard(request,lectName):
     if not request.user.is_authenticated:
