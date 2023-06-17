@@ -81,7 +81,7 @@
                         <a href="{% url 'board:eBoard' lect.lectName lect.professor %}">{{lect.lectName}} |
                             {{lect.professor}}</a>
                     </div>
-                    <span class="badge bg-primary rounded-pill">평가 수 :</span>
+                    <span class="badge bg-primary rounded-pill">평가 수 : {{lect.evalCount}}</span>
                 </li>
                 {% endfor %}
                 {% else %}
