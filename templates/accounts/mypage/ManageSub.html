@@ -34,12 +34,14 @@
             <!-- 강의 추가하는 부분 시작 -->
             <form action = "{% url 'accounts:ManageSub' %}", method = "POST">
             {% csrf_token %}
-                <div class="form-floating">
+                <div class="form-floating" style="margin-bottom: 5px;">
                     <div class="row">
                         <div class="input-group">
                             <input type="text" name="search_subject" id="search_subject" class="form-control" value="">
                             <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="submit" id="search_btn", name = "search_btn">검색</button>
+                                <button class="btn btn-outline-secondary" type="submit" id="search_btn", name = "search_btn" 
+                                style=" border-radius: 0px 5px 5px 0px;">
+                                    검색</button>
                             </span>
                         </div>
                     </div>
