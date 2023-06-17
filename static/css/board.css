@@ -33,3 +33,7 @@
   .table-wrapper {
     min-height: 450px;
   }
+
+.subtitle{
+    font-weight: bold;
+}

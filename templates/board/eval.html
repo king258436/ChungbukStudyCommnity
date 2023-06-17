@@ -74,6 +74,7 @@
                         <a href="{% url 'board:myEval' %}">내가 쓴 강의 모아보기</a>
                     </div>
                 </li>
+                <br>
                 {% for lect in myLects %}
                 <li class="list-group-item1 d-flex justify-content-between align-items-start"
                     style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px">
@@ -86,20 +87,22 @@
                 {% endfor %}
                 {% else %}
                 <div class="ms-2 me-auto">
-                    <a href="{% url 'accounts:ManageSub' %}">아직 수강중인 강의가 없네요.</a>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <a href="{% url 'accounts:ManageSub' %}"><p style="font-weight: bold; color: #fc0000;">아직 수강중인 강의가 없네요.</p></a>
                 </div>
                 {% endif %}
                 {% else %}
                 <div class="ms-2 me-auto">
-                    <a href="{% url 'accounts:Login' %}">강의 목록을 보려면 로그인을 해주세요.</a>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                    <a href="{% url 'accounts:Login' %}"><p style="font-weight: bold; color:#fc0000;">강의 목록을 보려면 로그인을 해주세요.</p></a>
                 </div>
                 {% endif %}
             </ol>
         </div>
         <!-- 좌측 사이드 탭 끝 -->
         <div class="col-lg-8 pt-5">
-            <h3 style="text-align: center; padding: 5px;">강의 평가</h3>
-            <p style="text-align: center">비방이나, 욕설 자제부탁 드립니다.</p>
+            <h3 style="text-align: center; padding: 5px; font-weight: bold;" id="disallow-to-drag">강의 평가</h3>
+            <p style="text-align: center; font-weight: bold;" id="disallow-to-drag">비방이나, 욕설 자제부탁 드립니다.</p>
             <!-- 강의 추가하는 부분 시작 -->
             <form action="{% url 'board:eMain' %}" , method="POST">
                 {% csrf_token %}
@@ -124,18 +127,20 @@
                                 <div class="fw-bold">{{eval.lectName}} | {{eval.rating}}.0/5.0</div>
                                 {{eval.content}}
                             </div>
-                            <span class="badge bg-info rounded-pill"
-                                style="position:relative; left:50px;">{{eval.professor}}</span>
-                            <div style="margin : 15px;">
-                                {% if eval.author == request.user.username %}
-                                <form action="{% url 'board:eMain' %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="evalId" value="{{ eval.id }}">
-                                    <button type="submit" name = "delBtn" class="btn btn-outline-secondary btn-sm" style="position : relative; top:15px ;left:-10px;
-                                    ">삭제</button>
-                                </form>
-                                {% endif %}
+                            <div>
+                            {% if eval.author == request.user.username %}
+                            <form action="{% url 'board:eMain' %}" method="POST" >
+                                {% csrf_token %}
+                                <input type="hidden" name="evalId" value="{{ eval.id }}">
+                                <button type="submit" name = "delBtn" class="btn btn-outline-secondary btn-sm" 
+                                >삭제</button>
+                            </form>
+                            {% endif %}
                             </div>
+                            <span class="badge bg-info rounded-pill"
+                            style="position:relative; left:5px; display:inline-block">{{eval.professor}}</span>
+
+
                         </li>
                         {% endfor %}
                     </ol>
@@ -173,7 +178,7 @@
                 </script>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-                    <textarea class="form-control" name="contents" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" name="contents" id="exampleFormControlTextarea1" rows="3" required></textarea>
                 </div>
                 <!-- 추가 버튼 -->
                 <div class="add_btn" style="text-align: center; margin-bottom: 30px;">

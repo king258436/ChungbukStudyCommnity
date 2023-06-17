@@ -73,6 +73,7 @@
                         <a href="{% url 'board:myEval' %}">내가 쓴 강의 모아보기</a>
                     </div>
                 </li>
+                <br>
                 {% for lect in myLects %}
                 <li class="list-group-item1 d-flex justify-content-between align-items-start"
                     style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px">
@@ -96,7 +97,7 @@
             <!-- 강의 추가하는 부분 시작 -->
             <form action = "{% url 'board:myEval' %}", method="POST">
                 {% csrf_token %}
-                <div class="form-floating form-control">
+                <div class="form-floating form-control" style="min-height: 500px;">
                     <!-- 추가할 강의 목록 -->
                     <ol class="list-group list-group-numbered">
                         {% for eval in evalList %}

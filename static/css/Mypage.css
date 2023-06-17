@@ -37,3 +37,15 @@ body{
 .input_group{
     width: 300px;
 }
+.disallow-to-drag {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+  #disallow-to-drag {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
