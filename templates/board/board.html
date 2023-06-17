@@ -161,17 +161,29 @@
         <div class="row justify-content-center">
           <div class="col-auto">
             <ul class="pagination">
+              {% if postList.paginator.num_pages > 1 %}
+          {% if postList.number > 3 %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1">&laquo;</a>
+            </li>
+          {% endif %}
               {% for num in postList.paginator.page_range %}
               {% if postList.number == num %}
               <li class="page-item active">
                 <a class="page-link" href="?page={{ num }}">{{ num }}</a>
               </li>
-              {% else %}
+              {% elif num > postList.number|add:'-3' and num < postList.number|add:'3' %}
               <li class="page-item">
                 <a class="page-link" href="?page={{ num }}">{{ num }}</a>
               </li>
               {% endif %}
-              {% endfor %}
+          {% endfor %}
+          {% if postList.number < postList.paginator.num_pages|add:'-2' %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ postList.paginator.num_pages }}">&raquo;</a>
+            </li>
+              {% endif %}
+            {% endif %}
             </ul>
           </div>
         </div>
