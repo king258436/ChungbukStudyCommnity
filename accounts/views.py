@@ -5,13 +5,17 @@ from .forms import *
 
 def SignUp(request):
     if request.method == "POST":
+        print("SIBAL")
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
             myLect = LectList(username = request.POST.get('username'))
             myLect.save()
             return render(request, 'main/index.html')
+        else:
+            print(form)
     else:
+        print("SIBAL")
         form = UserForm()
     return render(request, 'accounts/SignUp.html', {'form': form})
 #마이 페이지에서 사용할 함수 
