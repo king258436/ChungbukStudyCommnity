@@ -55,7 +55,11 @@
                     <td>
                         <!-- 모집여부 태그와 스터디 이름 -->
                         <div class="form-row">
+                            {% if  isReady %}
+                            <button class="btn btn-secondary" disabled>{{stu.tag}}</button>&nbsp;
+                            {% else %} 
                             <button class="btn btn-primary" disabled>{{stu.tag}}</button>&nbsp;
+                            {% endif %}
                         </div>
                         <!-- 스터디 모집 글 제목 -->
                         <div class="form-row mt-2">
@@ -76,12 +80,47 @@
                                     </div> 
                                     <!-- 글 삭제 버튼(작성자만 볼 수 있어야 할 듯) -->
                                     {% if myPost %}
-                                    <div class="col-auto">
-                                        <button class="btn btn-outline-primary" type="sumbit", name="delBtn", id = "delBtn">삭제</button>
+                                    <div class="col-auto px-0">
+                                        <button type="button" class="btn btn-outline-primary", name="delBtn", id = "delBtn" data-bs-toggle="modal" data-bs-target="#exampleModal" >삭제</button>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">삭제</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{ Post.postname }} 정말 삭제하시겠습니까?
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">닫기</button>
+                                                <button type="submit" class="btn btn-secondary" name = "delBtn">삭제하기</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
                                     </div>
                                     <!-- 글 상태 변경(모집중인지 모집완료인지 변경,(시간 여유있으면 추가적으로 현재 몇명 모집했는지 수정할 수 있으면 좋을 듯) 작성자만 볼 수 있게) -->
                                     <div class="col-auto">
-                                        <button class="btn btn-outline-primary" type="sumbit", name="changeStat", id = "changeStat">상태변경</button>
+                                        <button type="button" class="btn btn-outline-primary", name="changeStat", id = "changeStat" data-bs-toggle="modal" data-bs-target="#ChangeStat">상태변경</button>
+                                        <div class="modal fade" id="ChangeStat" tabindex="-1" aria-labelledby="ChangeStat" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="ChangeStat">상태 변경</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>스터디 모집 상태를 변경하시겠습니까?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                                                        <button type="submit" class="btn btn-primary" name="changeStat", id = "changeStat">상태 변경</button>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
                                     </div>
                                     {% endif %}
                                 </div>

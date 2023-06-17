@@ -44,7 +44,11 @@
             <td>
               <!-- 모집중 태그와 스터디 이름 -->
               <div class="form-row">
+                {% if isready %} 
+                <button class="btn btn-secondary" disabled>{{stu.tag}}</button> {{stu.purpose}}
+                {% else %} 
                 <button class="btn btn-primary" disabled>{{stu.tag}}</button> {{stu.purpose}}
+                {% endif %}
               </div>
               <!-- 스터디 모집 글 제목 -->
               <div class="form-row mt-2">
@@ -61,7 +65,7 @@
                         style="height: 20px; display: inline-block"
                         src="{% static 'image/person_icon.png' %}"
                         alt="Profile"
-                      />&nbsp;모집인원 {{stu.groupNum}}명
+                      />&nbsp;최대인원 {{stu.groupNum}}명
                     </div>
                     <div class="col-auto"></div>
                   </div>
@@ -73,17 +77,27 @@
       </a>
       {% endfor %}
     <!-- 페이징(미구현) -->
+    <!-- 페이징 -->
     <nav aria-label="Page naviagation example" id="page">
       <div class="row justify-content-center">
         <div class="col-auto">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            {% for num in studyList.paginator.page_range %}
+              {% if studyList.number == num %}
+              <li class="page-item active">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+              </li>
+              {% else %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+              </li>
+              {% endif %}
+              {% endfor %}
           </ul>
         </div>
       </div>
     </nav>
+    
   </div>
 </body>
 {% endblock %}
