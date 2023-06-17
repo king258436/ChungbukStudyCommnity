@@ -13,13 +13,33 @@
     font-size: 18px;
     font-weight: bold;
   }
+  .std_table{
+    background-color: white;
+    border:2px solid #c7c7c7;
+    border-radius: 20px 20px 20px 20px;
+  }
+  #std_list:hover {
+    border-radius: 20px;
+  background-color: #c7c7c7;
+}
+
+#std_list:hover .form-row > div.row {
+
+  background-color: #c7c7c7;
+}
+
+#std_list:hover .form-row > div.row .col {
+  background-color: #c7c7c7;
+}
+
+
 </style>
 
 <body>
   <!-- 상단 회색 바 -->
   <div class="container-fluid" style="background-color: rgb(192, 192, 192)">
-    <div class="container">
-      <div class="form-row" style="height: 50px">
+    <div class="container" style="width:72%;">
+      <div class="form-row" style="height: 50px;">
         <table>
           <tr>
             <td
@@ -34,54 +54,55 @@
       </div>
     </div>
   </div>
-  <div class="container mt-2" style="width:60%">
+  <div class="container mt-2" style="width:70%">
     <div class="row">
-      
+      <div class="std_table">
       <!-- 스터디 모집 글 템플릿 -->
-      {% for stu in studyList %}
-      <a href="{% url 'studyGroup:Posting' stu.title %}" class="link_style">
-        <table class="table justify-content-center">
-          <tr>
-            <td>
-              <!-- 모집중 태그와 스터디 이름 -->
-              <div class="form-row">
-                {% if isready %} 
-                <button class="btn btn-secondary" disabled>{{stu.tag}}</button> {{stu.purpose}}
-                {% else %} 
-                <button class="btn btn-primary" disabled>{{stu.tag}}</button> {{stu.purpose}}
-                {% endif %}
-              </div>
-              <!-- 스터디 모집 글 제목 -->
-              <div class="form-row mt-2">
-                <h5>{{stu.title}}</h5>
-              </div>
-              <!-- 스터디 내용 한줄 요약 -->
-              <div class="form-row">{{stu.summary}}</div>
-              <!-- 인원수와 작성날짜 작성자명 -->
-              <div class="form-row mt-3">
-                <div class="col">
-                  <div class="row">
-                    <div class="col" style="display: flex; align-items: center">
-                      <img
-                        style="height: 20px; display: inline-block"
-                        src="{% static 'image/person_icon.png' %}"
-                        alt="Profile"
-                      />&nbsp;최대인원 {{stu.groupNum}}명
-                    </div>
-                    <div class="col" style="text-align: end;">
-                      {{stu.author}} | {{stu.}}
-                    </div>
-                    <div class="col-auto"></div>
-                  </div>
+      <div style="height:5px;"></div>
+        {% for stu in studyList %}
+        <a href="{% url 'studyGroup:Posting' stu.title %}" class="link_style">
+          <table class="table justify-content-center" id="std_list">
+            <tr>
+              <td>
+                <!-- 모집중 태그와 스터디 이름 -->
+                <div class="form-row">
+                  {% if isready %} 
+                  <button class="btn btn-secondary" disabled>{{stu.tag}}</button> {{stu.purpose}}
+                  {% else %} 
+                  <button class="btn btn-primary" disabled>{{stu.tag}}</button> {{stu.purpose}}
+                  {% endif %}
                 </div>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </a>
-      {% endfor %}
+                <!-- 스터디 모집 글 제목 -->
+                <div class="form-row mt-2">
+                  <h5 style="font-weight: bold;">{{stu.title}}</h5>
+                </div>
+                <!-- 스터디 내용 한줄 요약 -->
+                <div class="form-row">{{stu.summary}}</div>
+                <!-- 인원수와 작성날짜 작성자명 -->
+                <div class="form-row mt-3">
+                    <div class="row" style="margin: 0px; background-color: white;" >
+                      <div class="col" style="display: flex; align-items: center">
+                        <img
+                          style="height: 20px; display: inline-block"
+                          src="{% static 'image/person_icon.png' %}"
+                          alt="Profile"
+                        />&nbsp;최대인원 {{stu.groupNum}}명
+                      </div>
+                      <div class="col" style="text-align: end;">
+                        {{stu.author}} | sdf
+                      </div>
+                    </div>
+
+                </div>
+              </td>
+            </tr>
+          </table>
+        </a>
+        {% endfor %}
+      </div>
     <!-- 페이징(미구현) -->
     <!-- 페이징 -->
+    <div class="row" style="height:10px"></div>
     <nav aria-label="Page naviagation example" id="page">
       <div class="row justify-content-center">
         <div class="col-auto">
