@@ -86,7 +86,8 @@ def index(request):
         return redirect("main:home")
     lectList = LectList.objects.get(username = request.user.username)
     lectList = lectList.myLects.all()
-    return render(request, "board/main.html", {"lectList": lectList})
+    lectCount = len(lectList)
+    return render(request, "board/main.html", {"lectList": lectList, "lectCount" : lectCount})
 
 def lectBoard(request,lectName):
     if not request.user.is_authenticated:
@@ -146,6 +147,10 @@ def evalMain(request):
         login = 0
     else:
         myLects = LectList.objects.get(username = request.user.username).myLects.all()
+        tmpLects = []
+        for i in myLects:
+            tmpLects.append({ 'lectName' : i.lectName, 'professor' : i.professor ,'evalCount' : len(evalLect.objects.filter(lectName = i.lectName))})
+        myLects = tmpLects
         login = 1
     evalList = list(evalLect.objects.all())[::-1]
     evalC = len(evalList)
@@ -164,16 +169,17 @@ def evalMain(request):
         elif 'evalBtn' in request.POST:
             lectC = int(request.POST.get('mySelect'))-1
             try:
-                evalLect.objects.get(author = request.user.username, lectName = myLects[lectC].lectName)
+                evalLect.objects.get(author = request.user.username, lectName = myLects[lectC]['lectName'])
             except:
                 newEval = evalLect()
                 newEval.content = request.POST.get('contents')
                 newEval.rating = request.POST.get('ratingLect')
-                newEval.lectName = myLects[lectC].lectName
-                newEval.professor = myLects[lectC].professor
+                newEval.lectName = myLects[lectC]['lectName']
+                newEval.professor = myLects[lectC]['professor']
                 newEval.author = request.user.username
                 newEval.save()
-                myLects[lectC].eval.add(newEval)
+                lect = LectList.objects.get(username = request.user.username).myLects.get(myLects[lectC]['lectName'])
+                lect.eval.add(newEval)
         elif 'delBtn' in request.POST:
             evalId = request.POST.get('evalId')
             try:
