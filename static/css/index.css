@@ -11,6 +11,7 @@
 }
 
 .card {
+    
     color: rgb(0, 0, 0);
     
 }
@@ -53,4 +54,21 @@ body{
 
 .card{
     background-color: black;
+}
+#disallow-to-drag {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  }
+
+#card_title{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+#addbtn{
+    border:1px solid #858484;
+    border-radius: 7px 7px 7px 7px;
 }

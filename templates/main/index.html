@@ -27,7 +27,7 @@
             <div class="card">
                 <img src="{% static 'image/book.jpg' %}" class="card-img" alt="...">
                 <div class="card-img-overlay ">
-                    <h1 class=" card-title fw-bold my-5"
+                    <h1 class=" card-title fw-bold my-5" id="card_title"
                         style="font-size:700%; color : rgba(255, 255, 255, 0.894); text-shadow: -1px 0 #000, 0 2px #000,2px 0 #000, 0 -1px #000;">
                         CBNU
                         Study
@@ -39,7 +39,7 @@
     </header>
     <div class="container" id="wrap" style="text-align : center;">
         <div>
-            <h2 style="font-family: 'Black Han Sans', sans-serif" ;>인기 게시물</h2>
+            <h2 style="font-family: 'Black Han Sans', sans-serif;" id="disallow-to-drag">인기 게시물</h2>
             <table width="500" height="300">
                 {% if PostCheck %}
                 {% for hot in postinfo %}
@@ -57,7 +57,7 @@
             </table>
         </div>
         <div>
-            <h2 style="font-family: 'Black Han Sans', sans-serif" ;>수강중인 과목</h2>
+            <h2 style="font-family: 'Black Han Sans', sans-serif;" id="disallow-to-drag">수강중인 과목</h2>
             <table width="500" height="300"> <!-- 후에 변경시 4개씩 보여지도록 만들것 버튼으로 보여지는거 다르게 ㄱ-->
                 {% if user.is_authenticated %}
                 {% if haveLect %}
@@ -67,7 +67,6 @@
                     <td onclick="location.href='{%url 'board:board' lect.lectName %}'" style="cursor:pointer;">
                         {{lect.lectName}}</td>
                     <!--과목 이름에 해당하는 과목 게시판링크를 달아주세요.-->
-                    <td></td>
                 </tr>
                 {% endfor %}
                 {% for none in emptyLect %}
@@ -77,13 +76,13 @@
                 {% endfor %}
                 {% else %}
                 <tr class="write">
-                    <td> 이런! 아직 수강중인 강의가 없어요.. 아래에 링크로 강의를 추가해주세요! </td>
-                    <td href="{% url 'accounts:ManageSub' %}">강의추가하기</td>
+                    <td> 이런! 아직 수강중인 강의가 없어요.. <br>아래에 링크로 강의를 추가해주세요! <br><br>
+                        <a href="{% url 'accounts:ManageSub' %}"><button class="btn btn-warning" id="addbtn">강의추가하기</button></a></td>
                 </tr>
                 {% endif %}
                 {% else %}
                 <tr class="write">
-                    <td style="border-bottom: none"> 로그인이 필요해요. 로그인 또는 회원가입을 해주세요! </td>
+                    <td style="border-bottom: none"> 로그인이 필요해요! </td>
                 </tr>
                 {% endif %}
             </table>
