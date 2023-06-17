@@ -94,11 +94,12 @@ def lectBoard(request,lectName):
     lectList = LectList.objects.get(username = request.user.username)
     lectList = lectList.myLects.all()
     postList = list(Post.objects.filter(lectName = lectName))[::-1]
+    bType = "all"
     
     paginator = Paginator(postList, 10)
     pageNum = request.GET.get('page')
     pageObj = paginator.get_page(pageNum)
-    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName, 'bType':bType})
 
 def lectInfo(request,lectName):
     if not request.user.is_authenticated:
@@ -106,11 +107,12 @@ def lectInfo(request,lectName):
     lectList = LectList.objects.get(username = request.user.username)
     lectList = lectList.myLects.all()
     postList = Post.objects.filter(lectName = lectName, tag = "정보 글")
-    
+    bType = "info"
+
     paginator = Paginator(postList, 10)
     pageNum = request.GET.get('page')
     pageObj = paginator.get_page(pageNum)
-    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName, 'bType':bType})
 
 def lectFree(request,lectName):
     if not request.user.is_authenticated:
@@ -118,11 +120,12 @@ def lectFree(request,lectName):
     lectList = LectList.objects.get(username = request.user.username)
     lectList = lectList.myLects.all()
     postList = Post.objects.filter(lectName = lectName, tag = "자유 글")
-    
+    bType = "free"
+
     paginator = Paginator(postList, 10)
     pageNum = request.GET.get('page')
     pageObj = paginator.get_page(pageNum)
-    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName, 'bType':bType})
 
 def lectQuest(request,lectName):
     if not request.user.is_authenticated:
@@ -130,11 +133,12 @@ def lectQuest(request,lectName):
     lectList = LectList.objects.get(username = request.user.username)
     lectList = lectList.myLects.all()
     postList = Post.objects.filter(lectName = lectName, tag = "질문 글")
-    
+    bType = "quest"
+
     paginator = Paginator(postList, 10)
     pageNum = request.GET.get('page')
     pageObj = paginator.get_page(pageNum)
-    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName})
+    return render(request, "board/board.html", {'lectList' : lectList,'postList':pageObj, 'lectName' : lectName, 'bType':bType})
 
 def evalMain(request):
     myLects = []
