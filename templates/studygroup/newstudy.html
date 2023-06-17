@@ -1,7 +1,7 @@
 {% extends 'Base.html' %} {% block content %} {% load static %}
 <!-- 스터디 모집 글 작성 페이지 -->
 <body>
-  <div class="container">
+  <div class="container" style="width:70%">
     <!-- 폼 시작 -->
     <form action="{% url 'studyGroup:NewStudy' %}" method="POST">
       {% csrf_token %}
