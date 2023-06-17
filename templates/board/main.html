@@ -10,8 +10,14 @@
         }
 
         h1 {
-            font-family: 'Bagel Fat One', cursive;
-            font-family: 'Gamja Flower', cursive;
+            font-weight: bold;
+        }
+
+        #bigRow {
+            border-top: 1px solid black;
+            margin: 0px;
+            padding-top: 5px;
+            margin-bottom: 10px;
         }
 
         #title {
@@ -20,59 +26,56 @@
             margin-bottom: 40px;
         }
 
-
-        #button a {
-            -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-            display: block;
-            margin: 20px auto;
-            max-width: 180px;
-            text-decoration: none;
-            border-radius: 4px;
-            padding: 20px 30px;
-        }
-
         a.button {
-            color: rgba(30, 22, 54, 0.6);
-            box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+            color: black;
+            height: 55px;
+            display: contents;
+            /* box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset; */
         }
 
         a.button:hover {
+            /* -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+            transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360); */
             color: rgba(255, 255, 255, 0.85);
-            box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+            box-shadow: rgb(170, 170, 171, 0.7) 0 0px 0px 40px inset;
+            display: block;
+            text-decoration: none;
+            padding-top: 15px;
+            font-weight: bold;
+
         }
 
 
         .row {
-            display: flex;
             align-items: center;
             background-color: rgb(255, 255, 255);
-            border-radius: 10px;
-            min-height: ;
+            height: 55px;
         }
 
         .col-sm-9 .row {
-            border: 1px solid black;
-            border-radius: 20px;
-            height: 65px;
-            background-color: rgb(197, 239, 246);
-            width: 100%;
+            border-top: 1px solid black;
+            height: 50px;
         }
 
         .hsd {
+            align-items: center;
+            padding-top: 20px;
             text-align: center;
             min-height: 500px;
             background-color: white;
-            width: 110%;
             border-radius: 10px;
         }
 
         .col-sm-9 .row a:hover {
             color: rgb(128, 128, 128);
             text-decoration: none;
+        }
+
+        body {
+            align-items: center;
         }
     </style>
 
@@ -81,37 +84,69 @@
 <body>
     <div class="container" id="total">
         <div id="title">
-            <h1>과목 게시판!</h1>
+            <h1>과목 게시판</h1>
         </div>
 
         <div class="hsd">
             <div class=container>
                 <div class="row">
-                    <div class="col-sm-9" style="display: flex; justify-content: flex-end;">
-                        <div class="row">
-                            <div class="col-4 col-sm-3">
-                                <a>번호 / 총 수</a>
-                            </div>
-                            <div class="col-4 col-sm-6">
-                                <a>과목이름</a>
-                            </div>
-                            <div class="col-4 col-sm-3">
-                                <a>교수이름</a>
-                            </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <h5 style="font-weight: bold;">번호/총 수</h5>
                         </div>
+                        <div class="col ">
+                            <h5 style="font-weight: bold;">과목이름</h5>
+                        </div>
+                        <div class="col">
+                            <h5 style="font-weight: bold;">교수이름</h5>
+                        </div>
+                        <div class="col">
+                            <h5 style="font-weight: bold;">이동버튼</h5>
+                        </div>
+
                     </div>
+                </div>
+                <div id="bigRow" class="row" style="align-items: center;">
 
-
-                    <div class="col-sm-3">
-                        <div id="button" class="mem">
-
-                            <a href="#" class="button">들어가기 </a>
-
+                    <div class="row" style="text-align: center">
+                        <div class="col">
+                            <a>번호 / 총 수</a>
                         </div>
+                        <div class="col ">
+                            <a>소프트웨어 실전 영어</a>
+                        </div>
+                        <div class="col">
+                            <a>아지즈나스리디노프</a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="button">들어가기 </a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- asdf -->
+                <div id="bigRow" class="row" style="align-items: center;">
+
+                    <div class="row" style="text-align: center">
+                        <div class="col">
+                            <a>번호 / 총 수</a>
+                        </div>
+                        <div class="col ">
+                            <a>소프트웨어 실전 영어</a>
+                        </div>
+                        <div class="col">
+                            <a>아지즈나스리디노프</a>
+                        </div>
+                        <div class="col">
+                            <a href="#" class="button">들어가기 </a>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 {% endblock %}
