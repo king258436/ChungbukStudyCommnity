@@ -31,9 +31,11 @@
         background-color: lightgray;
         cursor: pointer;
     }
-    .list-group-item:last-child{
+
+    .list-group-item:last-child {
         border: none;
     }
+
     .rating span {
         font-size: 30px;
         cursor: pointer;
@@ -61,7 +63,6 @@
         color: gray;
         text-decoration: none;
     }
-    
 </style>
 <!-- 마이페이지 본문 부분 -->
 <div class=container>
@@ -74,31 +75,39 @@
                 <li class="list-group-item1 d-flex justify-content-between align-items-start"
                     style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px">
                     <div class="ms-2 me-auto">
-                        <a href="{% url 'board:myEval' %}"><p style="margin:0px; font-weight: bold;">내가 쓴 강의 모아보기</p></a>
+                        <a href="{% url 'board:myEval' %}">
+                            <p style="margin:0px; font-weight: bold;">내가 쓴 강의 모아보기</p>
+                        </a>
                     </div>
                 </li>
                 <br>
                 {% for lect in myLects %}
                 <li class="list-group-item1 d-flex justify-content-between align-items-start"
-                    style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px; margin-top: 8px;" >
+                    style="border : 1px solid rgb(158, 155, 155); padding: 15px; border-radius : 15px; margin-top: 8px;">
                     <div class="ms-2 me-auto">
-                        <a href="{% url 'board:eBoard' lect.lectName lect.professor %}"><p style="margin:0px; font-weight: bold;">{{lect.lectName}}</p>
-                        <p style="margin:0px;">{{lect.professor}}</p></a>
+                        <a href="{% url 'board:eBoard' lect.lectName lect.professor %}">
+                            <p style="margin:0px; font-weight: bold;">{{lect.lectName}}</p>
+                            <p style="margin:0px;">{{lect.professor}}</p>
+                        </a>
                     </div>
                     <span class="badge bg-primary rounded-pill">평가 수 : {{lect.evalCount}}</span>
                 </li>
-                
+
                 {% endfor %}
                 {% else %}
                 <div class="ms-2 me-auto">
                     <br><br><br><br><br><br><br><br><br><br><br><br><br>
-                    <a href="{% url 'accounts:ManageSub' %}"><p style="font-weight: bold; color: #fc0000;">아직 수강중인 강의가 없네요.</p></a>
+                    <a href="{% url 'accounts:ManageSub' %}">
+                        <p style="font-weight: bold; color: #fc0000;">아직 수강중인 강의가 없네요.</p>
+                    </a>
                 </div>
                 {% endif %}
                 {% else %}
                 <div class="ms-2 me-auto">
                     <br><br><br><br><br><br><br><br><br><br><br><br>
-                    <a href="{% url 'accounts:Login' %}"><p style="font-weight: bold; color:#fc0000;">강의 목록을 보려면 로그인을 해주세요.</p></a>
+                    <a href="{% url 'accounts:Login' %}">
+                        <p style="font-weight: bold; color:#fc0000;">강의 목록을 보려면 로그인을 해주세요.</p>
+                    </a>
                 </div>
                 {% endif %}
             </ol>
@@ -126,26 +135,28 @@
                     <!-- 추가할 강의 목록 -->
                     <ol class="list-group list-group-numbered">
                         {% for eval in evalList %}
+
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">{{eval.lectName}} | {{eval.rating}}.0/5.0</div>
                                 {{eval.content}}
                             </div>
                             <div>
-                            {% if eval.author == request.user.username %}
-                            <form action="{% url 'board:eMain' %}" method="POST" >
-                                {% csrf_token %}
-                                <input type="hidden" name="evalId" value="{{ eval.id }}">
-                                <button type="submit" name = "delBtn" class="btn btn-outline-secondary btn-sm" 
-                                >삭제</button>
-                            </form>
-                            {% endif %}
+                                {% if eval.author == request.user.username %}
+                                <form action="{% url 'board:eMain' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="evalId" value="{{ eval.id }}">
+                                    <button type="submit" name="delBtn"
+                                        class="btn btn-outline-secondary btn-sm">삭제</button>
+                                </form>
+                                {% endif %}
                             </div>
                             <span class="badge bg-info rounded-pill"
-                            style="position:relative; left:5px; display:inline-block">{{eval.professor}}</span>
-
+                                style="position:relative; left:5px; display:inline-block">{{eval.professor}}</span>
 
                         </li>
+                        {% empty %}
+                        <p style="text-align: center;">해당 검색내용이 없습니다!</p>
                         {% endfor %}
                     </ol>
                 </div>
