@@ -13,7 +13,7 @@ ___
 ___
 ## 팀원 : 최원식
 - 학번 - 2020039029
-- 맡은 역할 frontend.
+- 맡은 역할 frontend.sss
 - Email : king258436@naver.com
 - [Github](https://github.com/king258436)
 ___
